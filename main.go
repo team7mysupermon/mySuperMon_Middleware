@@ -1,21 +1,96 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
-	"html"
 	"log"
 	"net/http"
+	"strings"
 )
 
+func main() {
 
-func main(){
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
-    })
+	test()
 
-    http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request){
-        fmt.Fprintf(w, "Hi")
-    })
+	start_recording()
 
-    log.Fatal(http.ListenAndServe(":8081", nil))
+	stop_recording()
+
+	// this is made by anton and dont know what it does thinks some docker stuff
+	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	//     fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
+	// })
+
+	// http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request){
+	//     fmt.Fprintf(w, "Hi")
+	// })
+
+	// log.Fatal(http.ListenAndServe(":8081", nil))
+}
+
+func test() {
+
+	// This is a control it calls a my supermon page allowed to all and gets the status code. it schould allways return 200 ok
+
+	//the url can be change to any http get request
+	var url = "https://app.mysupermon.com/#/authentication/login"
+
+	resp, err := http.Get(url)
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+	fmt.Printf("%v : get status = %v \n", url, resp.Status)
+
+	//***************************************************************
+	// this is a attemt to get a access_token from mysupermon. (to get a token it must be a post)
+	var data = "username=team7mysupermon@gmail.com&password=team7@123&grant_type=password"
+	resp1, err1 := http.Post("https://app.mysupermon.com/oauth/token", "application/json", strings.NewReader(data))
+
+	if err1 != nil {
+		log.Fatalln(err)
+	}
+	fmt.Println("we got " + resp1.Status)
+
+	//*****************************************************************
+	// this is a attemt to get a access_token from mysupermon. (to get a token it must be a post)
+	httpposturl := "https://app.mysupermon.com/oauth/token"
+	fmt.Println("HTTP JSON POST URL:", httpposturl)
+
+	var jsonData = []byte(`{
+		username": "team7mysupermon@gmail.com",
+		"password": "team7@123",
+        "grant_type": "password"
+	}`)
+	request, error := http.NewRequest("POST", httpposturl, bytes.NewBuffer(jsonData))
+	request.Header.Set("Content-Type", "application/json; charset=UTF-8")
+
+	client := &http.Client{}
+	response, error := client.Do(request)
+	if error != nil {
+		panic(error)
+	}
+	defer response.Body.Close()
+
+	fmt.Println("response Status:", response.Status)
+}
+
+// here are start and stop recording but we dont have a access_token to give them so they return 401( unauthorized )
+
+func start_recording() {
+	resp, err := http.Get("https://app.mysupermon.com/devaten/data/startRecording/pizza")
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+	fmt.Println("we got " + resp.Status)
+}
+
+func stop_recording() {
+	resp, err := http.Get("https://app.mysupermon.com/devaten/data/stopRecording?usecaseIdentifier=PIZZA&inputSource=PIZZA&frocefullyStop=false")
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+	fmt.Println("we got " + resp.Status)
 }
