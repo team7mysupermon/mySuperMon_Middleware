@@ -57,7 +57,7 @@ func test() {
 		return
 	}
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Add("Authorization", "Basic cGVyZm9ybWFuY2VEYXNoYm9hcmRDbGllbnRJZDpsamtuc3F5OXRwNjEyMw==")
+	// insert the req header from the note file
 
 	res, err := client.Do(req)
 	if err != nil {
@@ -77,7 +77,7 @@ func test() {
 // here are start and stop recording but we dont have a access_token to give them so they return 401( unauthorized )
 
 func start_recording() {
-	resp, err := http.Get("https://app.mysupermon.com/devaten/data/startRecording/pizza")
+	resp, err := http.Get("https://app.mysupermon.com/devaten/data/startRecording")
 
 	if err != nil {
 		log.Fatalln(err)
