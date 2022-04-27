@@ -1,11 +1,10 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
-	"strings"
 )
 
 func main() {
@@ -40,39 +39,39 @@ func test() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	fmt.Printf("%v : get status = %v \n", url, resp.Status)
-
-	//***************************************************************
-	// this is a attemt to get a access_token from mysupermon. (to get a token it must be a post)
-	var data = "username=team7mysupermon@gmail.com&password=team7@123&grant_type=password"
-	resp1, err1 := http.Post("https://app.mysupermon.com/oauth/token", "application/json", strings.NewReader(data))
-
-	if err1 != nil {
-		log.Fatalln(err)
-	}
-	fmt.Println("we got " + resp1.Status)
+	fmt.Printf("%v : get status = %v \n\n", url, resp.Status)
 
 	//*****************************************************************
 	// this is a attemt to get a access_token from mysupermon. (to get a token it must be a post)
-	httpposturl := "https://app.mysupermon.com/oauth/token"
-	fmt.Println("HTTP JSON POST URL:", httpposturl)
 
-	var jsonData = []byte(`{
-		username": "team7mysupermon@gmail.com",
-		"password": "team7@123",
-        "grant_type": "password"
-	}`)
-	request, error := http.NewRequest("POST", httpposturl, bytes.NewBuffer(jsonData))
-	request.Header.Set("Content-Type", "application/json; charset=UTF-8")
+	url = "https://app.mysupermon.com/oauth/token"
+	method := "POST"
+
+	// INSERT NODEpade code here
 
 	client := &http.Client{}
-	response, error := client.Do(request)
-	if error != nil {
-		panic(error)
-	}
-	defer response.Body.Close()
+	req, err := http.NewRequest(method, url, payload)
 
-	fmt.Println("response Status:", response.Status)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Add("Authorization", "Basic cGVyZm9ybWFuY2VEYXNoYm9hcmRDbGllbnRJZDpsamtuc3F5OXRwNjEyMw==")
+
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(body))
 }
 
 // here are start and stop recording but we dont have a access_token to give them so they return 401( unauthorized )
