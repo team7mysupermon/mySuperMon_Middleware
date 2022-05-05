@@ -13,11 +13,11 @@ import (
 )
 
 type Token struct {
-	Access_token string `json:"access_token"`
-	Token_type   string `json:"token_type"`
-	Expires_in   int    `json:"expires_in"`
-	Scope        string `json:"scope"`
-	Jti          string `json:"jti"`
+	AccessToken string `json:"access_token"`
+	TokenType   string `json:"token_type"`
+	ExpiresIn   int    `json:"expires_in"`
+	Scope       string `json:"scope"`
+	Jti         string `json:"jti"`
 }
 type Command struct {
 	Usecase               string `uri:"Usecase" binding:"required"`
@@ -28,7 +28,7 @@ type Config struct {
 	Username              string `json:"MySuperMon_Username"`
 	Password              string `json:"MySuperMon_Password"`
 	ApplicationIdentifier string `json:"MySuperMon_ApplicationIdentifier"`
-	Auth_Info             string `json:"Auth_information"`
+	AuthInfo              string `json:"Auth_information"`
 }
 
 var Tokenresponse Token
@@ -88,7 +88,7 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 	}
 	req.Header.Add("applicationIdentifier", applicationIdentifier)
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", "Bearer "+Tokenresponse.Access_token)
+	req.Header.Add("Authorization", "Bearer "+Tokenresponse.AccessToken)
 	res, err := client.Do(req)
 	if err != nil {
 		fmt.Println(err)
@@ -131,7 +131,7 @@ func getAuthToken() {
 			return
 		}
 		req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-		req.Header.Add("Authorization", config.Auth_Info)
+		req.Header.Add("Authorization", config.AuthInfo)
 
 		res, err := client.Do(req)
 		if err != nil {
@@ -148,9 +148,9 @@ func getAuthToken() {
 		json.Unmarshal(body, &Tokenresponse)
 
 		fmt.Println("******************************************** Auth Token ********************************************")
-		fmt.Printf("%s : %s\n", Tokenresponse.Token_type, Tokenresponse.Access_token)
+		fmt.Printf("%s : %s\n", Tokenresponse.TokenType, Tokenresponse.AccessToken)
 
-		time.Sleep(time.Second * (time.Duration(Tokenresponse.Expires_in) - 100))
+		time.Sleep(time.Second * (time.Duration(Tokenresponse.ExpiresIn) - 100))
 	}
 }
 
