@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
@@ -23,13 +24,19 @@ type Command struct {
 	ApplicationIdentifier string `uri:"Appiden" binding:"required"`
 }
 
+type Config struct {
+	Username              string `json:"MySuperMon_Username"`
+	Password              string `json:"MySuperMon_Password"`
+	ApplicationIdentifier string `json:"MySuperMon_ApplicationIdentifier"`
+	UserInfo              string `json:"MySuperMon_UserInfo"`
+	Auth_Info             string `json:"Auth_information"`
+}
+
 var Tokenresponse Token
+
+var config Config
+
 var quit = make(chan bool)
-
-// this code must be removed before being publish to git store it in a separate file
-//************************************************************************************************
-
-//************************************************************************************************
 
 func main() {
 	go getAuthToken()
@@ -109,11 +116,13 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 }
 
 func getAuthToken() {
+	readConfig()
+
 	for {
 		var url = "https://app.mysupermon.com/oauth/token"
 		method := "POST"
 
-		payload := strings.NewReader(userinfo)
+		payload := strings.NewReader(config.UserInfo)
 
 		client := &http.Client{}
 		req, err := http.NewRequest(method, url, payload)
@@ -123,7 +132,7 @@ func getAuthToken() {
 			return
 		}
 		req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-		req.Header.Add("Authorization", Authinfo)
+		req.Header.Add("Authorization", config.Auth_Info)
 
 		res, err := client.Do(req)
 		if err != nil {
@@ -144,6 +153,16 @@ func getAuthToken() {
 
 		time.Sleep(time.Second * (time.Duration(Tokenresponse.Expires_in) - 100))
 	}
+}
+
+func readConfig() {
+	body, err := os.ReadFile("Devaten.conf")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	json.Unmarshal(body, &config)
+	fmt.Printf("%s", config.Auth_Info)
 }
 
 func run_scrape_interval(command Command) {
