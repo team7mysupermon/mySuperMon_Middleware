@@ -14,7 +14,7 @@ import (
 
 type Token struct {
 	AccessToken string `json:"access_token"`
-	TokenType   string `json:"token_type"`
+	Type        string `json:"token_type"`
 	ExpiresIn   int    `json:"expires_in"`
 	Scope       string `json:"scope"`
 	Jti         string `json:"jti"`
@@ -148,7 +148,7 @@ func getAuthToken() {
 		json.Unmarshal(body, &Tokenresponse)
 
 		fmt.Println("******************************************** Auth Token ********************************************")
-		fmt.Printf("%s : %s\n", Tokenresponse.TokenType, Tokenresponse.AccessToken)
+		fmt.Printf("%s : %s\n", Tokenresponse.Type, Tokenresponse.AccessToken)
 
 		time.Sleep(time.Second * (time.Duration(Tokenresponse.ExpiresIn) - 100))
 	}
