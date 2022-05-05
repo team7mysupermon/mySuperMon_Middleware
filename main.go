@@ -28,7 +28,6 @@ type Config struct {
 	Username              string `json:"MySuperMon_Username"`
 	Password              string `json:"MySuperMon_Password"`
 	ApplicationIdentifier string `json:"MySuperMon_ApplicationIdentifier"`
-	UserInfo              string `json:"MySuperMon_UserInfo"`
 	Auth_Info             string `json:"Auth_information"`
 }
 
@@ -122,7 +121,7 @@ func getAuthToken() {
 		var url = "https://app.mysupermon.com/oauth/token"
 		method := "POST"
 
-		payload := strings.NewReader(config.UserInfo)
+		payload := strings.NewReader(generateUserInfo(config.Username, config.Password))
 
 		client := &http.Client{}
 		req, err := http.NewRequest(method, url, payload)
@@ -162,7 +161,12 @@ func readConfig() {
 		return
 	}
 	json.Unmarshal(body, &config)
-	fmt.Printf("%s", config.Auth_Info)
+}
+
+func generateUserInfo(username string, password string) string {
+	var userInfo = "username=" + username + "&password=" + password + "&grant_type=password"
+
+	return userInfo
 }
 
 func run_scrape_interval(command Command) {
