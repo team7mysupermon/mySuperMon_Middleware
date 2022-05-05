@@ -40,26 +40,26 @@ var quit = make(chan bool)
 func main() {
 	go getAuthToken()
 	router := gin.Default()
-	router.GET("/Start/:Usecase/:Appiden", postStart_Usscase_Appidentifier)
-	router.GET("/Stop/:Usecase/:Appiden", postStop_Usscase_Appidentifier)
+	router.GET("/Start/:Usecase/:Appiden", postStart_Usecase_Appidentifier)
+	router.GET("/Stop/:Usecase/:Appiden", postStop_Usecase_Appidentifier)
 	router.Run("localhost:8999")
 
 }
 
-func postStart_Usscase_Appidentifier(c *gin.Context) {
+func postStart_Usecase_Appidentifier(c *gin.Context) {
 	var command Command
 	if err := c.ShouldBindUri(&command); err != nil {
 		c.JSON(400, gin.H{"msg": err})
 		return
 	}
 	var res = Operation(command.Usecase, "start", command.ApplicationIdentifier)
-	c.JSON(res.StatusCode, gin.H{"Controle": "A recording has now startede"})
+	c.JSON(res.StatusCode, gin.H{"Control": "A recording has now started"})
 
 	go run_scrape_interval(command)
 
 }
 
-func postStop_Usscase_Appidentifier(c *gin.Context) {
+func postStop_Usecase_Appidentifier(c *gin.Context) {
 	var command Command
 	if err := c.ShouldBindUri(&command); err != nil {
 		c.JSON(400, gin.H{"msg": err})
@@ -67,7 +67,7 @@ func postStop_Usscase_Appidentifier(c *gin.Context) {
 	}
 	quit <- true
 	var res = Operation(command.Usecase, "stop", command.ApplicationIdentifier)
-	c.JSON(res.StatusCode, gin.H{"Controle": "A recording has now Ended"})
+	c.JSON(res.StatusCode, gin.H{"Control": "A recording has now ended"})
 }
 
 func Operation(usecase string, action string, applicationIdentifier string) *http.Response {
