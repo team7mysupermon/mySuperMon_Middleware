@@ -40,13 +40,13 @@ var quit = make(chan bool)
 func main() {
 	go getAuthToken()
 	router := gin.Default()
-	router.GET("/Start/:Usecase/:Appiden", postStart_Usecase_Appidentifier)
-	router.GET("/Stop/:Usecase/:Appiden", postStop_Usecase_Appidentifier)
+	router.GET("/Start/:Usecase/:Appiden", postStartUsecaseAppidentifier)
+	router.GET("/Stop/:Usecase/:Appiden", postStopUsecaseAppidentifier)
 	router.Run("localhost:8999")
 
 }
 
-func postStart_Usecase_Appidentifier(c *gin.Context) {
+func postStartUsecaseAppidentifier(c *gin.Context) {
 	var command Command
 	if err := c.ShouldBindUri(&command); err != nil {
 		c.JSON(400, gin.H{"msg": err})
@@ -55,11 +55,11 @@ func postStart_Usecase_Appidentifier(c *gin.Context) {
 	var res = Operation(command.Usecase, "start", command.ApplicationIdentifier)
 	c.JSON(res.StatusCode, gin.H{"Control": "A recording has now started"})
 
-	go run_scrape_interval(command)
+	go runScrapeInterval(command)
 
 }
 
-func postStop_Usecase_Appidentifier(c *gin.Context) {
+func postStopUsecaseAppidentifier(c *gin.Context) {
 	var command Command
 	if err := c.ShouldBindUri(&command); err != nil {
 		c.JSON(400, gin.H{"msg": err})
@@ -169,7 +169,7 @@ func generateUserInfo(username string, password string) string {
 	return userInfo
 }
 
-func run_scrape_interval(command Command) {
+func runScrapeInterval(command Command) {
 	for {
 		select {
 		case <-quit:
