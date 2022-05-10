@@ -82,7 +82,7 @@ func startRecording(c *gin.Context) {
 	c.JSON(res.StatusCode, gin.H{"Control": "A recording has now started"})
 
 	// Starts the scraping on a seperat thread
-	go run_scrape_interval(command)
+	go scrapeWithInterval(command)
 }
 
 func stopRecording(c *gin.Context) {
@@ -196,7 +196,7 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 The function that is called when the user starts the recording
 Will every 5 seconds do the run operation, which returns some information about the current recording
 */
-func run_scrape_interval(command StartAndStopCommand) {
+func scrapeWithInterval(command StartAndStopCommand) {
 	for {
 		select {
 		case <-quit:
