@@ -29,8 +29,6 @@ var (
 			Name: "SUM_SELECTED_RANGE",
 			Help: "Value of the no. of selected ranges during monitoring",
 		})
-
-	runRecordingData storage.RunRecordingData
 )
 
 // registers metrics to expose
@@ -67,14 +65,16 @@ func Monitor() {
 }
 
 func ParseBody(body []byte) {
-	var startRecordingValue storage.RunRecordingData
+	var runIdentificationData storage.RunIdentificationData
 
-	err := json.Unmarshal(body, &startRecordingValue)
+	fmt.Println(string(body))
+
+	err := json.Unmarshal(body, &runIdentificationData)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	fmt.Printf("%+v\n", startRecordingValue)
+	fmt.Printf("%+v\n", runIdentificationData)
 }
 
 /* func newHandlerWithHistogram(handler http.Handler, histogram *prometheus.HistogramVec) http.Handler {
