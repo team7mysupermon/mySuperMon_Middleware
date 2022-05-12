@@ -1,4 +1,4 @@
-package main
+package monitoring
 
 //se prometheus config docs:
 // https://prometheus.io/docs/guides/go-application/
@@ -60,7 +60,7 @@ var (
 		})
 )
 
-func record_metrics() {
+func recordMetrics() {
 	
 	go func () {
 		for {
@@ -99,7 +99,7 @@ func newHandlerWithHistogram(handler http.Handler, histogram *prometheus.Histogr
 
 
 func main() {
-	record_metrics()
+	recordMetrics()
 	cpuTemp.Set(420.69)
 	hdFailures.With(prometheus.Labels{"device":"/dev/sda"}).Inc()
 
