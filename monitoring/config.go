@@ -32,7 +32,7 @@ var (
 			Name: "SUM_SELECTED_RANGE",
 			Help: "Value of the no. of selected ranges during monitoring",
 		})
-		/* 
+	/*
 		SumSelectRange         int       `json:"SUM_SELECT_RANGE"`
 		SumLockTime            time.Time `json:"SUM_LOCK_TIME"`
 		SumSortRows            int       `json:"SUM_SORT_ROWS"`
@@ -53,12 +53,12 @@ var (
 		SumSelectFullRangeJoin int       `json:"SUM_SELECT_FULL_RANGE_JOIN"`
 		SumSortMergePasses     int       `json:"SUM_SORT_MERGE_PASSES"`
 		SumSortRange           int       `json:"SUM_SORT_RANGE"` */
-	
+
 )
 
 func recordMetrics() {
-	
-	go func () {
+
+	go func() {
 		for {
 			SUM_ROWS_AFFECTED_GAUGE.Set(startRecordingValue.SumRowsAffected)
 			SUM_SELECTED_RANGE_GAUGE.Set(startRecordingValue.SumSelectRange)
@@ -94,10 +94,10 @@ func registerMetricsToPrometheus() {
 } */
 
 type StartRecordingValues struct {
-	SumRowsAffected        float64       `json:"SUM_ROWS_AFFECTED"`
-	SumSelectRange         float64       `json:"SUM_SELECT_RANGE"`
+	SumRowsAffected        float64   `json:"SUM_ROWS_AFFECTED"`
+	SumSelectRange         float64   `json:"SUM_SELECT_RANGE"`
 	SumLockTime            time.Time `json:"SUM_LOCK_TIME"`
-	SumSortRows            int       `json:"SUM_SORT_ROWS"`
+	SumSortRows            float64   `json:"SUM_SORT_ROWS"`
 	SumErrors              int       `json:"SUM_ERRORS"`
 	SumRowsSent            int       `json:"SUM_ROWS_SENT"`
 	SumSelectScan          int       `json:"SUM_SELECT_SCAN"`
@@ -126,11 +126,11 @@ func ParseBody(body []byte) {
 	}
 
 	fmt.Printf("%+v\n", startRecordingValue)
-	
+
 	setStartRecordingValues(startRecordingValue)
 }
 
-func setStartRecordingValues (_startRecordingValue StartRecordingValues) {
+func setStartRecordingValues(_startRecordingValue StartRecordingValues) {
 	startRecordingValue = _startRecordingValue
 }
 
@@ -139,11 +139,13 @@ func Monitor() {
 	recordMetrics()
 
 	http.Handle("/metrics", promhttp.Handler())
-	http.ListenAndServe(":2112", nil)
+	err := http.ListenAndServe(":2112", nil)
+	if err != nil {
+		return
+	}
 
 	//rand.Seed(time.Now().Unix())
 	//http.Handle("/metrics", newHandlerWithHistogram(promhttp.Handler(), histogramVec))
-
 
 	log.Fatal(http.ListenAndServe(":2112", nil))
 }
