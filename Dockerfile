@@ -1,12 +1,13 @@
 # syntax=docker/dockerfile:1
 FROM golang:latest
 WORKDIR /src
-COPY ./src ./
+COPY ./ ./
 
 RUN go mod tidy
 RUN go mod download
 RUN go build -o /mysupermon-middleware-prometheus
 
-EXPOSE 8081
+EXPOSE 8999
+EXPOSE 2112
 
 CMD [ "/mysupermon-middleware-prometheus" ]
