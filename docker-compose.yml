@@ -5,13 +5,12 @@ services:
     image: devaten/mysupermon-middleware-prometheus:latest
     build: 
       context: .
-      dockerfile: docker/Dockerfile
+      dockerfile: ./Dockerfile
     container_name: mysupermon-middleware-prometheus
     depends_on: 
       - prometheus
     restart: always
     ports:
-      - 2112:2112
       - 8999:8999
     networks:
       - middleware
@@ -22,9 +21,9 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
-      - "--config.file=/monitoring/prometheus/prometheus.yml"
+      - "--config.file=/etc/prometheus/prometheus.yml"
     networks:
       - middleware
 
