@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"time"
 
 	"log"
 
@@ -29,6 +28,8 @@ var (
 			Name: "SUM_SELECTED_RANGE",
 			Help: "Value of the no. of selected ranges during monitoring",
 		})
+
+	runIdentificationData storage.RunIdentificationData
 )
 
 // registers metrics to expose
@@ -37,21 +38,21 @@ func registerMetrics() {
 	prometheus.MustRegister(SUM_SELECTED_RANGE_GAUGE)
 }
 
-func recordMetrics() {
+/* func recordMetrics() {
 
 	go func() {
 		for {
-			//SUM_ROWS_AFFECTED_GAUGE.Set(runRecordingData.SumRowsAffected)
-			//SUM_SELECTED_RANGE_GAUGE.Set(runRecordingData.SumSelectRange)
+			SUM_ROWS_AFFECTED_GAUGE.Set(float64(runIdentificationData.RunSituationResult[0].Data.SumRowsAffected))
+			SUM_SELECTED_RANGE_GAUGE.Set(float64(runIdentificationData.RunSituationResult[0].Data.SumSelectRange))
 			time.Sleep(5 * time.Second)
 		}
 	}()
 
-}
+} */
 
 func Monitor() {
 	registerMetrics()
-	recordMetrics()
+	//recordMetrics()
 
 	http.Handle("/metrics", promhttp.Handler())
 	err := http.ListenAndServe(":9090", nil)

@@ -35,12 +35,12 @@ type LoginCommand struct {
 }
 
 type RunIdentificationData struct {
-	IdNumber              int    `json:"idNum"`
-	UsecaseIdentifier     string `json:"usecaseIdentifier"`
-	ApplicationID         int    `json:"applicationId"`
-	ApplicationName       string `json:"applicationName"`
-	ApplicationIdentifier string `json:"applicationIdentifier"`
-	//RunSituationResult    []RunClientData `json:"runSituationResult"`
+	IdNumber              int             `json:"idNum"`
+	UsecaseIdentifier     string          `json:"usecaseIdentifier"`
+	ApplicationID         int             `json:"applicationId"`
+	ApplicationName       string          `json:"applicationName"`
+	ApplicationIdentifier string          `json:"applicationIdentifier"`
+	RunSituationResult    []RunClientData `json:"runSituationResult"`
 }
 
 type RunClientData struct {
