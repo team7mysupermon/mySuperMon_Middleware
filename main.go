@@ -9,8 +9,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-
-	monitoring "github.com/mySuperMon_Middleware/src/monitoring"
+	"github.com/team7mysupermon/mySuperMon_Middleware/monitoring"
 )
 
 /*
