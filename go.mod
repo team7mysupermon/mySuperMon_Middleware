@@ -1,4 +1,4 @@
-module github.com/mySuperMon_Middleware/src
+module github.com/team7mysupermon/mySuperMon_Middleware
 
 go 1.18
 

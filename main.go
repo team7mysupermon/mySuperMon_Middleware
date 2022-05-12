@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/team7mysupermon/mySuperMon_Middleware/monitoring"
 )
 
 /*
@@ -44,23 +45,29 @@ type LoginCommand struct {
 	Password string `uri:"Password" binding:"required"`
 }
 
-// The authentication token needed to be able to get the access token when logging in
-var authToken = "Basic cGVyZm9ybWFuY2VEYXNoYm9hcmRDbGllbnRJZDpsamtuc3F5OXRwNjEyMw=="
 
-/*
-This object is instantiated when the user calls the login API call
-It contains the authentication token
-*/
-var Tokenresponse Token
+var (
+	// The authentication token needed to be able to get the access token when logging in
+	authToken = "Basic cGVyZm9ybWFuY2VEYXNoYm9hcmRDbGllbnRJZDpsamtuc3F5OXRwNjEyMw=="
 
-/*
-A quit channel used to close the goroutine that scrapes the recording
-The goroutine is started when the user starts the recording
-*/
-var quit = make(chan bool)
+	/*
+	Instantiated when a user calls the login API call.
+	Contains the authentication token
+	*/
+	Tokenresponse Token
+
+	/*
+	Closes the goroutine that scrapes the recording.
+	The goroutine is started when the user starts the recording
+	*/
+	quit = make(chan bool)
+) 
+
 
 func main() {
-	router := gin.Default()
+	go monitoring.Monitor()
+
+	router := gin.Default()	
 
 	// The API calls
 	router.GET("/Login/:Username/:Password", getAuthToken)
@@ -68,7 +75,7 @@ func main() {
 	router.GET("/Stop/:Usecase/:Appiden", stopRecording)
 
 	// Starts the program
-	router.Run("localhost:8999")
+	router.Run(":8999")
 }
 
 func startRecording(c *gin.Context) {
@@ -176,6 +183,7 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 		}
 	}
 	defer res.Body.Close()
+	
 
 	// TODO: Handle errors
 	body, err := ioutil.ReadAll(res.Body)
@@ -186,6 +194,9 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 			StatusCode: 500,
 		}
 	}
+
+	monitoring.ParseBody(body)
+
 	fmt.Printf("********************************************************** begin %v \n", action)
 	fmt.Println(string(body))
 	fmt.Printf("********************************************************** end %v \n\n", action)
@@ -216,3 +227,4 @@ func generateUserInfo(username string, password string) string {
 
 	return userInfo
 }
+
