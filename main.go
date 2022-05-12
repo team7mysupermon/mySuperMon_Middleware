@@ -13,11 +13,13 @@ import (
 	"github.com/team7mysupermon/mySuperMon_Middleware/monitoring"
 )
 
+
 var (
 	// The authentication token needed to be able to get the access token when logging in
 	authToken = "Basic cGVyZm9ybWFuY2VEYXNoYm9hcmRDbGllbnRJZDpsamtuc3F5OXRwNjEyMw=="
 
 	/*
+
 		Instantiated when a user calls the login API call.
 		Contains the authentication token
 	*/
@@ -33,7 +35,8 @@ var (
 func main() {
 	go monitoring.Monitor()
 
-	router := gin.Default()
+
+	router := gin.Default()	
 
 	// The API calls
 	router.GET("/Login/:Username/:Password", getAuthToken)
@@ -45,7 +48,6 @@ func main() {
 	if err != nil {
 		return
 	}
-}
 
 func startRecording(c *gin.Context) {
 	// Creates the command structure by taking information from the URL call
@@ -83,6 +85,7 @@ func getAuthToken(c *gin.Context) {
 
 	// Creates the command structure by taking information from the URL call
 	// TODO: Handle errors
+
 	var command storage.LoginCommand
 	if err := c.ShouldBindUri(&command); err != nil {
 		c.JSON(400, gin.H{"msg": err})
@@ -117,6 +120,7 @@ func getAuthToken(c *gin.Context) {
 		fmt.Println(err)
 		return
 	}
+
 	err = json.Unmarshal(body, &Tokenresponse)
 	if err != nil {
 		return
@@ -179,6 +183,7 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 The function that is called when the user starts the recording
 Will every 5 seconds do the run operation, which returns some information about the current recording
 */
+
 func scrapeWithInterval(command storage.StartAndStopCommand) {
 	for {
 		select {
