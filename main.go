@@ -65,7 +65,7 @@ var (
 
 
 func main() {
-	monitoring.Monitor()
+	go monitoring.Monitor()
 
 	router := gin.Default()	
 
