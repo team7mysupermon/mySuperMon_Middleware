@@ -38,6 +38,7 @@ Struct for the calls that the user makes with a Username and a Password.
 The information is gathered from the URL and added to the struct.
 Therefore, the end of the struct, the uri:xxx part, must match the definitions in the main method.
 */
+
 type LoginCommand struct {
 	Username string `uri:"Username" binding:"required"`
 	Password string `uri:"Password" binding:"required"`
