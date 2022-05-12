@@ -8,6 +8,7 @@ import (
 	"os"
 	"strings"
 	"time"
+	etc "github.com/mySuperMon_Middleware/etc"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,7 +24,6 @@ type Command struct {
 	Usecase               string `uri:"Usecase" binding:"required"`
 	ApplicationIdentifier string `uri:"Appiden" binding:"required"`
 }
-
 type Config struct {
 	Username              string `json:"MySuperMon_Username"`
 	Password              string `json:"MySuperMon_Password"`
@@ -31,14 +31,17 @@ type Config struct {
 	AuthInfo              string `json:"Auth_information"`
 }
 
-var Tokenresponse Token
+var (
+	Tokenresponse Token
+	config Config
+	quit = make(chan bool)
+	startRecordingValue StartRecordingValues
+)
 
-var config Config
-
-var quit = make(chan bool)
 
 func main() {
 	go getAuthToken()
+	go etc.Monitor()
 	router := gin.Default()
 	router.GET("/Start/:Usecase/:Appiden", postStart_Usecase_Appidentifier)
 	router.GET("/Stop/:Usecase/:Appiden", postStop_Usecase_Appidentifier)
@@ -107,6 +110,9 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 			StatusCode: 500,
 		}
 	}
+
+	parseBody(body)
+
 	fmt.Printf("********************************************************** begin %v \n", action)
 	fmt.Println(string(body))
 	fmt.Printf("********************************************************** end %v \n\n", action)
@@ -180,4 +186,49 @@ func run_scrape_interval(command Command) {
 		time.Sleep(5 * time.Second)
 
 	}
+}
+
+type StartRecordingValues struct {
+	SumRowsAffected        int       `json:"SUM_ROWS_AFFECTED"`
+	SumSelectRange         int       `json:"SUM_SELECT_RANGE"`
+	SumLockTime            time.Time `json:"SUM_LOCK_TIME"`
+	SumSortRows            int       `json:"SUM_SORT_ROWS"`
+	SumErrors              int       `json:"SUM_ERRORS"`
+	SumRowsSent            int       `json:"SUM_ROWS_SENT"`
+	SumSelectScan          int       `json:"SUM_SELECT_SCAN"`
+	SumNoGoodIndexUsed     int       `json:"SUM_NO_GOOD_INDEX_USED"`
+	ExecTimeMax            time.Time `json:"EXEC_TIME_MAX"`
+	SumSortScan            int       `json:"SUM_SORT_SCAN"`
+	SumSelectRangeCheck    int       `json:"SUM_SELECT_RANGE_CHECK"`
+	SumTimerWait           time.Time `json:"SUM_TIMER_WAIT"`
+	UsecaseIdentifier      string    `json:"USECASE_IDENTIFIER"`
+	StartTimeStamp         time.Time `json:"STARTTIMESTMAP"`
+	SumRowsExamined        int       `json:"SUM_ROWS_EXAMINED"`
+	SumSelectFullJoin      int       `json:"SUM_SELECT_FULL_JOIN"`
+	SumNoIndexUsed         int       `json:"SUM_NO_INDEX_USED"`
+	CountStar              int       `json:"COUNT_STAR"`
+	SumSelectFullRangeJoin int       `json:"SUM_SELECT_FULL_RANGE_JOIN"`
+	SumSortMergePasses     int       `json:"SUM_SORT_MERGE_PASSES"`
+	SumSortRange           int       `json:"SUM_SORT_RANGE"`
+}
+
+func parseBody(body []byte) {
+	var startRecordingValue StartRecordingValues
+
+	err := json.Unmarshal(body, &startRecordingValue)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Printf("%+v\n", startRecordingValue)
+	
+	setStartRecordingValues(startRecordingValue)
+}
+
+func setStartRecordingValues (_startRecordingValue StartRecordingValues) {
+	startRecordingValue = _startRecordingValue
+}
+
+func getStartRecordingValues() StartRecordingValues {
+	return startRecordingValue
 }
