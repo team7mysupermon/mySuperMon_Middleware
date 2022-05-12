@@ -8,6 +8,5 @@ RUN go mod download
 RUN go build -o /mysupermon-middleware-prometheus
 
 EXPOSE 8999
-EXPOSE 2112
 
 CMD [ "/mysupermon-middleware-prometheus" ]

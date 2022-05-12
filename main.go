@@ -75,7 +75,7 @@ func main() {
 	router.GET("/Stop/:Usecase/:Appiden", stopRecording)
 
 	// Starts the program
-	router.Run("localhost:8999")
+	router.Run(":8999")
 }
 
 func startRecording(c *gin.Context) {
