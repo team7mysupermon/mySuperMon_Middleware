@@ -134,11 +134,6 @@ func setStartRecordingValues (_startRecordingValue StartRecordingValues) {
 	startRecordingValue = _startRecordingValue
 }
 
-func getStartRecordingValues() StartRecordingValues {
-	return startRecordingValue
-}
-
-
 func Monitor() {
 	registerMetricsToPrometheus()
 	recordMetrics()

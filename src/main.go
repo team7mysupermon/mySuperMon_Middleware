@@ -52,13 +52,13 @@ var (
 	authToken = "Basic cGVyZm9ybWFuY2VEYXNoYm9hcmRDbGllbnRJZDpsamtuc3F5OXRwNjEyMw=="
 
 	/*
-	This object is instantiated when the user calls the login API call
-	It contains the authentication token
+	Instantiated when a user calls the login API call.
+	Contains the authentication token
 	*/
 	Tokenresponse Token
 
 	/*
-	A quit channel used to close the goroutine that scrapes the recording
+	Closes the goroutine that scrapes the recording.
 	The goroutine is started when the user starts the recording
 	*/
 	quit = make(chan bool)
