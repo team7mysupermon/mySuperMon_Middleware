@@ -4,80 +4,77 @@ package monitoring
 // https://prometheus.io/docs/guides/go-application/
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 	"time"
-	"fmt"
+
 	"log"
-	"math/rand"
 
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
+var (
+	startRecordingValue StartRecordingValues
+)
 
 //declare metric var
 var (
-	opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
-		Name: "processed_events_counter",
-		Help: "Total no. of processed events",
-	})
-
-	cpuTemp = prometheus.NewGauge(prometheus.GaugeOpts{
-		Name: "cpu_temperature_celsius",
-		Help: "Current temperature of the CPU.",
-	})
-	hdFailures = prometheus.NewCounterVec(
-		prometheus.CounterOpts{
-			Name: "hd_errors_total",
-			Help: "Number of hard-disk errors.",
-		},
-		[]string{"device"},
-	)
-
-	counter = prometheus.NewCounter(
-		prometheus.CounterOpts{
-			Name:      "counter",
-			Help:      "This is a counter",
-		})
-
-	gauge = prometheus.NewGauge(
+	SUM_ROWS_AFFECTED_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name:      "gauge",
-			Help:      "This is a gauge",
+			Name: "SUM_ROWS_AFFECTED",
+			Help: "Value of the no. of times a row is affected during monitoring",
 		})
 
-	histogram = prometheus.NewHistogram(
-		prometheus.HistogramOpts{
-			Name:      "histogram",
-			Help:      "This is a histogram",
+	SUM_SELECTED_RANGE_GAUGE = prometheus.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "SUM_SELECTED_RANGE",
+			Help: "Value of the no. of selected ranges during monitoring",
 		})
-
-	summary = prometheus.NewSummary(
-		prometheus.SummaryOpts{
-			Name:      "summary",
-			Help:      "This is a summary",
-		})
+		/* 
+		SumSelectRange         int       `json:"SUM_SELECT_RANGE"`
+		SumLockTime            time.Time `json:"SUM_LOCK_TIME"`
+		SumSortRows            int       `json:"SUM_SORT_ROWS"`
+		SumErrors              int       `json:"SUM_ERRORS"`
+		SumRowsSent            int       `json:"SUM_ROWS_SENT"`
+		SumSelectScan          int       `json:"SUM_SELECT_SCAN"`
+		SumNoGoodIndexUsed     int       `json:"SUM_NO_GOOD_INDEX_USED"`
+		ExecTimeMax            time.Time `json:"EXEC_TIME_MAX"`
+		SumSortScan            int       `json:"SUM_SORT_SCAN"`
+		SumSelectRangeCheck    int       `json:"SUM_SELECT_RANGE_CHECK"`
+		SumTimerWait           time.Time `json:"SUM_TIMER_WAIT"`
+		UsecaseIdentifier      string    `json:"USECASE_IDENTIFIER"`
+		StartTimeStamp          time.Time `json:"STARTTIMESTMAP"`
+		SumRowsExamined        int       `json:"SUM_ROWS_EXAMINED"`
+		SumSelectFullJoin      int       `json:"SUM_SELECT_FULL_JOIN"`
+		SumNoIndexUsed         int       `json:"SUM_NO_INDEX_USED"`
+		CountStar              int       `json:"COUNT_STAR"`
+		SumSelectFullRangeJoin int       `json:"SUM_SELECT_FULL_RANGE_JOIN"`
+		SumSortMergePasses     int       `json:"SUM_SORT_MERGE_PASSES"`
+		SumSortRange           int       `json:"SUM_SORT_RANGE"` */
+	
 )
 
 func recordMetrics() {
 	
 	go func () {
 		for {
-			opsProcessed.Inc()
-			time.Sleep(2 * time.Second)
+			SUM_ROWS_AFFECTED_GAUGE.Set(startRecordingValue.SumRowsAffected)
+			SUM_SELECTED_RANGE_GAUGE.Set(startRecordingValue.SumSelectRange)
+			time.Sleep(5 * time.Second)
 		}
 	}()
 
 }
 
-func init() {
+func registerMetricsToPrometheus() {
 	// Metrics have to be registered to be exposed:
-	prometheus.MustRegister(cpuTemp)
-	prometheus.MustRegister(hdFailures)
+	prometheus.MustRegister(SUM_ROWS_AFFECTED_GAUGE)
+	prometheus.MustRegister(SUM_SELECTED_RANGE_GAUGE)
 }
 
-func newHandlerWithHistogram(handler http.Handler, histogram *prometheus.HistogramVec) http.Handler {
+/* func newHandlerWithHistogram(handler http.Handler, histogram *prometheus.HistogramVec) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		start := time.Now()
 		status := http.StatusOK
@@ -94,44 +91,64 @@ func newHandlerWithHistogram(handler http.Handler, histogram *prometheus.Histogr
 
 		w.WriteHeader(status)
 	})
+} */
+
+type StartRecordingValues struct {
+	SumRowsAffected        float64       `json:"SUM_ROWS_AFFECTED"`
+	SumSelectRange         float64       `json:"SUM_SELECT_RANGE"`
+	SumLockTime            time.Time `json:"SUM_LOCK_TIME"`
+	SumSortRows            int       `json:"SUM_SORT_ROWS"`
+	SumErrors              int       `json:"SUM_ERRORS"`
+	SumRowsSent            int       `json:"SUM_ROWS_SENT"`
+	SumSelectScan          int       `json:"SUM_SELECT_SCAN"`
+	SumNoGoodIndexUsed     int       `json:"SUM_NO_GOOD_INDEX_USED"`
+	ExecTimeMax            time.Time `json:"EXEC_TIME_MAX"`
+	SumSortScan            int       `json:"SUM_SORT_SCAN"`
+	SumSelectRangeCheck    int       `json:"SUM_SELECT_RANGE_CHECK"`
+	SumTimerWait           time.Time `json:"SUM_TIMER_WAIT"`
+	UsecaseIdentifier      string    `json:"USECASE_IDENTIFIER"`
+	StartTimeStamp         time.Time `json:"STARTTIMESTMAP"`
+	SumRowsExamined        int       `json:"SUM_ROWS_EXAMINED"`
+	SumSelectFullJoin      int       `json:"SUM_SELECT_FULL_JOIN"`
+	SumNoIndexUsed         int       `json:"SUM_NO_INDEX_USED"`
+	CountStar              int       `json:"COUNT_STAR"`
+	SumSelectFullRangeJoin int       `json:"SUM_SELECT_FULL_RANGE_JOIN"`
+	SumSortMergePasses     int       `json:"SUM_SORT_MERGE_PASSES"`
+	SumSortRange           int       `json:"SUM_SORT_RANGE"`
+}
+
+func ParseBody(body []byte) {
+	var startRecordingValue StartRecordingValues
+
+	err := json.Unmarshal(body, &startRecordingValue)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Printf("%+v\n", startRecordingValue)
+	
+	setStartRecordingValues(startRecordingValue)
+}
+
+func setStartRecordingValues (_startRecordingValue StartRecordingValues) {
+	startRecordingValue = _startRecordingValue
+}
+
+func getStartRecordingValues() StartRecordingValues {
+	return startRecordingValue
 }
 
 
-
-func main() {
+func Monitor() {
+	registerMetricsToPrometheus()
 	recordMetrics()
-	cpuTemp.Set(420.69)
-	hdFailures.With(prometheus.Labels{"device":"/dev/sda"}).Inc()
 
 	http.Handle("/metrics", promhttp.Handler())
 	http.ListenAndServe(":2112", nil)
 
-	rand.Seed(time.Now().Unix())
+	//rand.Seed(time.Now().Unix())
+	//http.Handle("/metrics", newHandlerWithHistogram(promhttp.Handler(), histogramVec))
 
-	histogramVec := prometheus.NewHistogramVec(prometheus.HistogramOpts{
-		Name: "prom_request_time",
-		Help: "Time it has taken to retrieve the metrics",
-	}, []string{"time"})
-
-	prometheus.Register(histogramVec)
-
-	http.Handle("/metrics", newHandlerWithHistogram(promhttp.Handler(), histogramVec))
-
-	prometheus.MustRegister(counter)
-	prometheus.MustRegister(gauge)
-	prometheus.MustRegister(histogram)
-	prometheus.MustRegister(summary)
-
-	go func() {
-		for {
-			counter.Add(rand.Float64() * 5)
-			gauge.Add(rand.Float64()*15 - 5)
-			histogram.Observe(rand.Float64() * 10)
-			summary.Observe(rand.Float64() * 10)
-
-			time.Sleep(time.Second)
-		}
-	}()
 
 	log.Fatal(http.ListenAndServe(":2112", nil))
 }
