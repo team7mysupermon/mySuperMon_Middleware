@@ -167,7 +167,7 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 		}
 	}
 
-	monitoring.ParseBody(body)
+	monitoring.ParseBody(body, action)
 
 	fmt.Printf("********************************************************** begin %v \n", action)
 	fmt.Println(string(body))
