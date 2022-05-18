@@ -275,8 +275,8 @@ func TestStopSituationResult(t *testing.T) {
 	assert.Equal(t, data.HostURL, "konakart")
 }
 
-/* func TestStopData(t *testing.T){
-	data := setUpStartData().StartMetaData.StartDataSourceList[0].StartData
+func TestStopData(t *testing.T){
+	data := setUpStopData().StopMetaData.StopDataSourceList[0].StopData
 
 	assert.Equal(t, data.Statements, 31.0)
 	assert.Equal(t, data.StatementLatencyInS, 0.02)
@@ -292,4 +292,10 @@ func TestStopSituationResult(t *testing.T) {
 
 	assert.Equal(t, data.UsecaseIdentifier, 0.0)
 	assert.Equal(t, data.UniqueUsers, 1.0)
-} */
+}
+
+func TestStopSPLPerSec(t *testing.T) {
+	data := setUpStopData().StopMetaData.StopDataSourceList[0].StopValueObjectList[0]
+
+	assert.Equal(t, data.OldValue, 0.0)
+}
