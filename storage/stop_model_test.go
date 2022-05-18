@@ -265,17 +265,17 @@ func TestStopMetaData(t *testing.T) {
 	assert.Equal(t, data.StartTimestamp, "2022-05-09T12:37:06.000+0000")
 }
 
-/* func TestStopSituationResult(t *testing.T) {
-	data := setUpStartData().StartMetaData.StartDataSourceList[0]
+func TestStopSituationResult(t *testing.T) {
+	data := setUpStopData().StopMetaData.StopDataSourceList[0]
 
 	assert.Equal(t, data.DataSourceID, 232)
 	assert.Equal(t, data.DatabaseType, "MySQL")
 	assert.Equal(t, data.DatabaseName, "konakart")
-	assert.Equal(t, data.SchemaName, "konakart")
-	assert.Equal(t, data.HostURL, "34.88.216.230")
+	assert.Equal(t, data.SchemaName, nil)
+	assert.Equal(t, data.HostURL, "konakart")
 }
 
-func TestStopData(t *testing.T){
+/* func TestStopData(t *testing.T){
 	data := setUpStartData().StartMetaData.StartDataSourceList[0].StartData
 
 	assert.Equal(t, data.Statements, 31.0)
