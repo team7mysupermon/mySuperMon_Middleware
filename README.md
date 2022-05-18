@@ -1,6 +1,9 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/team7mysupermon/mySuperMon_Middleware)](https://goreportcard.com/report/github.com/team7mysupermon/mySuperMon_Middleware)
 
 # mySuperMon_Middleware
+This middleware was created to create an easy to set up link between MySuperMon and Prometheus.
+
+Further down this document, you can find a guide on how to install, run and use this middleware.
 
 ## How to Install
 
