@@ -1,9 +1,13 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/team7mysupermon/mySuperMon_Middleware)](https://goreportcard.com/report/github.com/team7mysupermon/mySuperMon_Middleware)
 
 # mySuperMon_Middleware
-This middleware was created to create an easy to set up link between MySuperMon and Prometheus.
+This middleware was created to have an easy to set up link between MySuperMon and Prometheus.
+
+This middleware helps you, the user, moniter your database. Through MySuperMon and Prometheus all the relevant information about different tasks performed on your database will be monitored and saved, and this information is easily accessable through the Prometheus and MySuperMon dashboard.
 
 Further down this document, you can find a guide on how to install, run and use this middleware.
+
+You must have a MySuperMon account to use this middleware. You can create an account on their [website](https://mysupermon.com/).
 
 ## How to Install
 
@@ -23,11 +27,11 @@ Once the middleware is up and running, you can do the following API calls:
 localhost:8999/Login/{MySuperMon Username}/{MySuperMon Password}
 ```
 
-Must be called as the first API call, or everything else will fail.
+This call must be made as the first API call, or it will not be possible to start or stop a recording.
 
 Once you have logged in, you can start and stop recordings without having to log in again.
 
-If the image is ever shut down, when you start it back up, you must log in again.
+If the image is ever shut down, you must log in again when you restart the program.
 
 ### Start Recording
 
@@ -35,7 +39,7 @@ If the image is ever shut down, when you start it back up, you must log in again
 localhost:8999/Start/{Usecase name}/{Application Identifier}
 ```
 
-**Usecase name** can be anything that you chose
+**Usecase name** can be anything that you choose.
 
 **Application Identifier** can be found in MySuperMon, under *Applications* and *Application Management.*
 
