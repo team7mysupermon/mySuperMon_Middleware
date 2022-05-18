@@ -22,7 +22,7 @@ type StartData struct {
 	UsecaseIdentifier       float64 `json:"USECASE_IDENTIFIER"`
 	UniqueUsers             float64 `json:"UNIQUE_USERS"`
 }
-type DataSourceList struct {
+type StartDataSourceList struct {
 	DataSourceID    int         `json:"dataSourceId"`
 	DatabaseType    string      `json:"databaseType"`
 	DatabaseName    string      `json:"databaseName"`
@@ -32,10 +32,10 @@ type DataSourceList struct {
 	ValueObjectList interface{} `json:"valueObjectList"`
 }
 type StartMetaData struct {
-	IDNum                 int              `json:"idNum"`
-	UsecaseIdentifier     string           `json:"usecaseIdentifier"`
-	ApplicationID         int              `json:"applicationId"`
-	ApplicationName       string           `json:"applicationName"`
-	ApplicationIdentifier string           `json:"applicationIdentifier"`
-	DataSourceList        []DataSourceList `json:"dataSourceList"`
+	IDNum                 int                   `json:"idNum"`
+	UsecaseIdentifier     string                `json:"usecaseIdentifier"`
+	ApplicationID         int                   `json:"applicationId"`
+	ApplicationName       string                `json:"applicationName"`
+	ApplicationIdentifier string                `json:"applicationIdentifier"`
+	StartDataSourceList   []StartDataSourceList `json:"dataSourceList"`
 }
