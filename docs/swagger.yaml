@@ -1,8 +1,38 @@
-basePath: /Login/:Username/:Password"
+basePath: /Login/:Username/:Password
 info:
   contact: {}
 paths:
   /Login/:Username/:Password:
+    get:
+      consumes:
+      - application/json
+      description: do ping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: ping example
+      tags:
+      - example
+  /Start1/:Usecase/:Appiden:
+    get:
+      consumes:
+      - application/json
+      description: do ping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: ping example
+      tags:
+      - example
+  /Stop/:Usecase/:Appiden:
     get:
       consumes:
       - application/json
