@@ -1,54 +1,56 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/team7mysupermon/mySuperMon_Middleware)](https://goreportcard.com/report/github.com/team7mysupermon/mySuperMon_Middleware)
 
-# mySuperMon_Middleware
-This middleware was created to have an easy to set up link between MySuperMon and Prometheus.
+# Final Readme
 
-This middleware helps you, the user, moniter your database. Through MySuperMon and Prometheus all the relevant information about different tasks performed on your database will be monitored and saved, and this information is easily accessable through the Prometheus and MySuperMon dashboard.
+# **mySuperMon_Middleware**
 
-Further down this document, you can find a guide on how to install, run and use this middleware.
+This middleware was created for complementing mySuperMon’s monitoring functionalities by integrating Prometheus.
 
-You must have a MySuperMon account to use this middleware. You can create an account on their [website](https://mysupermon.com/).
+All the relevant information from monitoring database tests will be saved and be easily accessible via Prometheus’ and mySuperMon’s dashboards.
 
-## How to Install
+Information regarding installing and operating the middleware is available later in this document.
 
-## How to Run
+Utilizing this software requires a mySuperMon account, which can be created at their [website](https://mysupermon.com/).
 
-## How to Use
+## **How to Install**
 
-When the docker image is running, it is running on the local port **8999**, which is the port you can use to start and stop a MySuperMon recording.
+## **How to Run**
 
-Also, the image will open the port **9090** that can be used to access information about the recording through **Prometheus.**
+## **How to Use**
 
-Once the middleware is up and running, you can do the following API calls:
+Once the docker image is running, local port **8999** is used for operating mySuperMon recordings.
 
-### Login
+Additionally, the image will open port **9090** which is used for accessing information about the recording via **Prometheus.**
 
-```
+Once the middleware is up and running, the following API calls are available:
+
+### **Login**
+
+```yaml
 localhost:8999/Login/{MySuperMon Username}/{MySuperMon Password}
 ```
 
-This call must be made as the first API call, or it will not be possible to start or stop a recording.
+This **must** **be the first** API call, or it will not be possible to start or stop a recording.
 
 Once you have logged in, you can start and stop recordings without having to log in again.
 
 If the image is ever shut down, you must log in again when you restart the program.
 
-### Start Recording
+### **Start Recording**
 
+```yaml
+localhost:8999/Start/{Usecase name}/{Application Identifier}
 ```
+`Usecase name` can be anything that you choose.
+
+`Application Identifier` can be found in mySuperMon, under *Applications* → *Application*
+
+### **Stop Recording**
+
+```yaml
 localhost:8999/Start/{Usecase name}/{Application Identifier}
 ```
 
-**Usecase name** can be anything that you choose.
+`Usecase name` **must** be the same as the name used to start the recording.
 
-**Application Identifier** can be found in MySuperMon, under *Applications* and *Application Management.*
-
-### Stop Recording
-
-```
-localhost:8999/Start/{Usecase name}/{Application Identifier}
-```
-
-**Usecase name** has to be the same as the name used to start the recording.
-
-**Application Identifier** has to be the same as the application identifier used to start the recording.
+The `application Identifier` **must** be the same as the application identifier used to start the recording.
