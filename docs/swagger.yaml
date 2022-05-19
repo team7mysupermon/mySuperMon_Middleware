@@ -22,6 +22,17 @@ paths:
       consumes:
       - application/json
       description: do ping
+      parameters:
+      - description: :Usecase
+        in: path
+        name: Usecase
+        required: true
+        type: string
+      - description: :Appiden
+        in: path
+        name: Appiden
+        required: true
+        type: string
       produces:
       - application/json
       responses:

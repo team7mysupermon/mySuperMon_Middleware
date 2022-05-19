@@ -52,6 +52,22 @@ const docTemplate = `{
                     "example"
                 ],
                 "summary": "ping example",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": ":Usecase",
+                        "name": "Usecase",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": ":Appiden",
+                        "name": "Appiden",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
