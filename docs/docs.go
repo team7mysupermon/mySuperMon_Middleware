@@ -18,23 +18,33 @@ const docTemplate = `{
     "paths": {
         "/Login/:Username/:Password": {
             "get": {
-                "description": "do ping",
-                "consumes": [
-                    "application/json"
-                ],
+                "description": "this is a request to give the middleware user information. this will allow the middleware to set up the authentication token need to start and stop the recording.",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "example"
                 ],
-                "summary": "ping example",
+                "summary": "Send middleware user information",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": ":Username",
+                        "name": "Username",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": ":Password",
+                        "name": "Password",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "description": ""
                     }
                 }
             }
@@ -91,6 +101,22 @@ const docTemplate = `{
                     "example"
                 ],
                 "summary": "ping example",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": ":Usecase",
+                        "name": "Usecase",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": ":Appiden",
+                        "name": "Appiden",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -108,7 +134,7 @@ const docTemplate = `{
 var SwaggerInfo = &swag.Spec{
 	Version:          "",
 	Host:             "",
-	BasePath:         "/Login/:Username/:Password",
+	BasePath:         "/Login/{Username}/{Password}",
 	Schemes:          []string{},
 	Title:            "",
 	Description:      "",

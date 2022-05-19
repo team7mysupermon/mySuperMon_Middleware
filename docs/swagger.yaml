@@ -1,23 +1,32 @@
-basePath: /Login/:Username/:Password
+basePath: /Login/{Username}/{Password}
 info:
   contact: {}
 paths:
   /Login/:Username/:Password:
     get:
-      consumes:
-      - application/json
-      description: do ping
+      description: this is a request to give the middleware user information. this
+        will allow the middleware to set up the authentication token need to start
+        and stop the recording.
+      parameters:
+      - description: :Username
+        in: path
+        name: Username
+        required: true
+        type: string
+      - description: :Password
+        in: path
+        name: Password
+        required: true
+        type: string
       produces:
       - application/json
       responses:
         "200":
-          description: OK
-          schema:
-            type: string
-      summary: ping example
+          description: ""
+      summary: Send middleware user information
       tags:
       - example
-  /Start1/:Usecase/:Appiden:
+  /Start/{Usecase}/{Appiden}:
     get:
       consumes:
       - application/json
@@ -48,6 +57,17 @@ paths:
       consumes:
       - application/json
       description: do ping
+      parameters:
+      - description: :Usecase
+        in: path
+        name: Usecase
+        required: true
+        type: string
+      - description: :Appiden
+        in: path
+        name: Appiden
+        required: true
+        type: string
       produces:
       - application/json
       responses:
