@@ -5,6 +5,19 @@ import (
 	"github.com/team7mysupermon/mySuperMon_Middleware/storage"
 )
 
+// @BasePath /Stop/{Usecase}/{Appiden}
+
+// PingExample godoc
+// @Summary Stop a recording
+// @Schemes
+// @Description This endpoint is to stop a recording and needs a usecase and a applicationIdentifier as parameters.
+// @Tags example
+// @Param Usecase path string true ":Usecase"
+// @Param Appiden path string true ":Appiden"
+// @Accept json
+// @Produce json
+// @Success 200
+// @Router /Stop/{Usecase}/{Appiden} [get]
 func StopRecording(c *gin.Context) {
 	// Creates the command structure by taking information from the URL call
 	// TODO: Handle errors

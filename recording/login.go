@@ -22,6 +22,18 @@ var (
 	Tokenresponse storage.Token
 )
 
+// @BasePath /Login/{Username}/{Password}
+
+// PingExample godoc
+// @Summary Send middleware user information
+// @Schemes
+// @Description this is a request to give the middleware user information. this will allow the middleware to set up the authentication token need to start and stop the recording.
+// @Tags example
+// @Param Username path string true ":Username"
+// @Param Password path string true ":Password"
+// @Produce json
+// @Success 200
+// @Router /Login/{Username}/{Password} [get]
 func GetAuthToken(c *gin.Context) {
 	var url = "https://app.mysupermon.com/oauth/token"
 	method := "POST"
@@ -67,4 +79,3 @@ func GetAuthToken(c *gin.Context) {
 		return
 	}
 }
-

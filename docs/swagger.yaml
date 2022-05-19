@@ -1,0 +1,93 @@
+swagger: '2.0'
+info:
+  description: |
+    This is the api endpoints for the
+    MySuperMon Middelware service.
+  version: 1.0.0
+  title: Swagger Petstore
+  termsOfService: https://mysupermon.com
+paths:
+  /Login/{Username}/{Password}:
+    get:
+      description: this is a request to give the middleware user information. this
+        will allow the middleware to set up the authentication token need to start
+        and stop the recording.
+      parameters:
+      - description: :Username
+        in: path
+        name: Username
+        required: true
+        type: string
+      - description: :Password
+        in: path
+        name: Password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+      summary: Send middleware user information
+      tags:
+      - example
+  /Start/{Usecase}/{Appiden}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint is to stop a recording and needs a usecase and a
+        applicationIdentifier as parameters.
+      parameters:
+      - description: :Usecase
+        in: path
+        name: Usecase
+        required: true
+        type: string
+      - description: :Appiden
+        in: path
+        name: Appiden
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "500":
+          description: ""
+      summary: Start a recording
+      tags:
+      - example
+  /Stop/{Usecase}/{Appiden}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint is to stop a recording and needs a usecase and a
+        applicationIdentifier as parameters.
+      parameters:
+      - description: :Usecase
+        in: path
+        name: Usecase
+        required: true
+        type: string
+      - description: :Appiden
+        in: path
+        name: Appiden
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "500":
+          description: ""
+      summary: Stop a recording
+      tags:
+      - example
