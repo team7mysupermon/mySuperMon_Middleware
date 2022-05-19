@@ -55,15 +55,15 @@ func main() {
 // @BasePath /Start/{Usecase}/{Appiden}
 
 // PingExample godoc
-// @Summary ping example
+// @Summary Start a recording
 // @Schemes
-// @Description do ping
+// @Description This endpoint is to stop a recording and needs a usecase and a applicationIdentifier as parameters.
 // @Tags example
 // @Param Usecase path string true ":Usecase"
 // @Param Appiden path string true ":Appiden"
 // @Accept json
 // @Produce json
-// @Success 200 {string} Helloworld
+// @Success 200
 // @Router /Start/{Usecase}/{Appiden} [get]
 func startRecording(c *gin.Context) {
 	// Creates the command structure by taking information from the URL call
@@ -80,16 +80,18 @@ func startRecording(c *gin.Context) {
 	go scrapeWithInterval(command)
 }
 
-// @BasePath /Stop/:Usecase/:Appiden"
+// @BasePath /Stop/{Usecase}/{Appiden}
 
 // PingExample godoc
-// @Summary ping example
+// @Summary Stop a recording
 // @Schemes
-// @Description do ping
+// @Description This endpoint is to stop a recording and needs a usecase and a applicationIdentifier as parameters.
 // @Tags example
+// @Param Usecase path string true ":Usecase"
+// @Param Appiden path string true ":Appiden"
 // @Accept json
 // @Produce json
-// @Success 200 {string} Helloworld
+// @Success 200
 // @Router /Stop/:Usecase/:Appiden [get]
 func stopRecording(c *gin.Context) {
 	// Creates the command structure by taking information from the URL call
@@ -106,16 +108,17 @@ func stopRecording(c *gin.Context) {
 	c.JSON(res.StatusCode, gin.H{"Control": "A recording has now ended"})
 }
 
-// @BasePath /Login/:Username/:Password
+// @BasePath /Login/{Username}/{Password}
 
 // PingExample godoc
-// @Summary ping example
+// @Summary Send middleware user information
 // @Schemes
-// @Description do ping
+// @Description this is a request to give the middleware user information. this will allow the middleware to set up the authentication token need to start and stop the recording.
 // @Tags example
-// @Accept json
+// @Param Username path string true ":Username"
+// @Param Password path string true ":Password"
 // @Produce json
-// @Success 200 {string} Helloworld
+// @Success 200
 // @Router /Login/:Username/:Password [get]
 func getAuthToken(c *gin.Context) {
 	var url = "https://app.mysupermon.com/oauth/token"
