@@ -25,7 +25,7 @@ const docTemplate = `{
                 "tags": [
                     "example"
                 ],
-                "summary": "http://localhost:8999/Send middleware user information",
+                "summary": "Send middleware user information",
                 "parameters": [
                     {
                         "type": "string",
