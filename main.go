@@ -12,6 +12,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/team7mysupermon/mySuperMon_Middleware/monitoring"
+
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	docs "github.com/team7mysupermon/mySuperMon_Middleware/docs"
 )
 
 var (
@@ -33,14 +37,14 @@ var (
 
 func main() {
 	go monitoring.Monitor()
-
+	docs.SwaggerInfo.BasePath = "/api/v1"
 	router := gin.Default()
 
 	// The API calls
 	router.GET("/Login/:Username/:Password", getAuthToken)
 	router.GET("/Start/:Usecase/:Appiden", startRecording)
 	router.GET("/Stop/:Usecase/:Appiden", stopRecording)
-
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 	// Starts the program
 	err := router.Run(":8999")
 	if err != nil {
@@ -48,6 +52,17 @@ func main() {
 	}
 }
 
+// @BasePath /Login/:Username/:Password"
+
+// PingExample godoc
+// @Summary ping example
+// @Schemes
+// @Description do ping
+// @Tags example
+// @Accept json
+// @Produce json
+// @Success 200 {string} Helloworld
+// @Router /Login/:Username/:Password [get]
 func startRecording(c *gin.Context) {
 	// Creates the command structure by taking information from the URL call
 	// TODO: Handle errors
