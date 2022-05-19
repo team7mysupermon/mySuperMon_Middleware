@@ -2,8 +2,8 @@ package recording
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"strings"
 
@@ -42,7 +42,7 @@ func GetAuthToken(c *gin.Context) {
 
 	// TODO: Handle all errors
 	if err != nil {
-		fmt.Println(err)
+		log.Panicln(err)
 		return
 	}
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
@@ -51,7 +51,7 @@ func GetAuthToken(c *gin.Context) {
 	// TODO: Handle all errors
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		log.Panicln(err)
 		return
 	}
 	defer res.Body.Close()
@@ -59,7 +59,7 @@ func GetAuthToken(c *gin.Context) {
 	// TODO: Handle all errors
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
+		log.Panicln(err)
 		return
 	}
 	err = json.Unmarshal(body, &Tokenresponse)

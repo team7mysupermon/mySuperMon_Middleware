@@ -1,8 +1,8 @@
 package recording
 
 import (
-	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"strings"
 
@@ -22,7 +22,7 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 
 	// TODO: Handle errors
 	if err != nil {
-		fmt.Println(err)
+		log.Panicln(err)
 		return &http.Response{
 			Status:     err.Error(),
 			StatusCode: 500,
@@ -33,7 +33,7 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 	req.Header.Add("Authorization", "Bearer "+ Tokenresponse.AccessToken)
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		log.Panicln(err)
 		return &http.Response{
 			Status:     err.Error(),
 			StatusCode: 500,
@@ -44,7 +44,7 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 	// TODO: Handle errors
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
+		log.Panicln(err)
 		return &http.Response{
 			Status:     err.Error(),
 			StatusCode: 500,
@@ -52,10 +52,6 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 	}
 
 	monitoring.ParseBody(body, action)
-
-	fmt.Printf("********************************************************** begin %v \n", action)
-	fmt.Println(string(body))
-	fmt.Printf("********************************************************** end %v \n\n", action)
 	return res
 
 }
