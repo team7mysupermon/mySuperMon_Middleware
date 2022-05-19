@@ -17,7 +17,7 @@ import (
 // @Accept json
 // @Produce json
 // @Success 200
-// @Router /Stop/:Usecase/:Appiden [get]
+// @Router /Stop/{Usecase}/{Appiden} [get]
 func StopRecording(c *gin.Context) {
 	// Creates the command structure by taking information from the URL call
 	// TODO: Handle errors

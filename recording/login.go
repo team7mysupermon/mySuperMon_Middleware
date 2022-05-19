@@ -33,7 +33,7 @@ var (
 // @Param Password path string true ":Password"
 // @Produce json
 // @Success 200
-// @Router /Login/:Username/:Password [get]
+// @Router /Login/{Username}/{Password} [get]
 func GetAuthToken(c *gin.Context) {
 	var url = "https://app.mysupermon.com/oauth/token"
 	method := "POST"
