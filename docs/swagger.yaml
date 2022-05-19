@@ -1,7 +1,7 @@
 info:
   contact: {}
 paths:
-  /Login/:Username/:Password:
+  /Login/{Username}/{Password}:
     get:
       description: this is a request to give the middleware user information. this
         will allow the middleware to set up the authentication token need to start
@@ -50,7 +50,7 @@ paths:
       summary: Start a recording
       tags:
       - example
-  /Stop/:Usecase/:Appiden:
+  /Stop/{Usecase}/{Appiden}:
     get:
       consumes:
       - application/json

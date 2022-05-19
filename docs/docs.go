@@ -16,7 +16,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/Login/:Username/:Password": {
+        "/Login/{Username}/{Password}": {
             "get": {
                 "description": "this is a request to give the middleware user information. this will allow the middleware to set up the authentication token need to start and stop the recording.",
                 "produces": [
@@ -85,7 +85,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/Stop/:Usecase/:Appiden": {
+        "/Stop/{Usecase}/{Appiden}": {
             "get": {
                 "description": "This endpoint is to stop a recording and needs a usecase and a applicationIdentifier as parameters.",
                 "consumes": [
