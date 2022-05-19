@@ -1,5 +1,11 @@
+swagger: '2.0'
 info:
-  contact: {}
+  description: |
+    This is the api endpoints for the
+    MySuperMon Middelware service.
+  version: 1.0.0
+  title: Swagger Petstore
+  termsOfService: https://mysupermon.com
 paths:
   /Login/{Username}/{Password}:
     get:
@@ -21,6 +27,8 @@ paths:
       - application/json
       responses:
         "200":
+          description: ""
+        "400":
           description: ""
       summary: Send middleware user information
       tags:
@@ -47,6 +55,10 @@ paths:
       responses:
         "200":
           description: ""
+        "400":
+          description: ""
+        "500":
+          description: ""
       summary: Start a recording
       tags:
       - example
@@ -72,7 +84,10 @@ paths:
       responses:
         "200":
           description: ""
+        "400":
+          description: ""
+        "500":
+          description: ""
       summary: Stop a recording
       tags:
       - example
-swagger: "2.0"
