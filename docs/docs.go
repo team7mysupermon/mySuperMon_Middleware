@@ -51,7 +51,7 @@ const docTemplate = `{
         },
         "/Start/{Usecase}/{Appiden}": {
             "get": {
-                "description": "do ping",
+                "description": "This endpoint is to stop a recording and needs a usecase and a applicationIdentifier as parameters.",
                 "consumes": [
                     "application/json"
                 ],
@@ -61,7 +61,7 @@ const docTemplate = `{
                 "tags": [
                     "example"
                 ],
-                "summary": "ping example",
+                "summary": "Start a recording",
                 "parameters": [
                     {
                         "type": "string",
@@ -80,17 +80,14 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "description": ""
                     }
                 }
             }
         },
         "/Stop/:Usecase/:Appiden": {
             "get": {
-                "description": "do ping",
+                "description": "This endpoint is to stop a recording and needs a usecase and a applicationIdentifier as parameters.",
                 "consumes": [
                     "application/json"
                 ],
@@ -100,7 +97,7 @@ const docTemplate = `{
                 "tags": [
                     "example"
                 ],
-                "summary": "ping example",
+                "summary": "Stop a recording",
                 "parameters": [
                     {
                         "type": "string",
@@ -119,10 +116,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "description": ""
                     }
                 }
             }
@@ -134,7 +128,7 @@ const docTemplate = `{
 var SwaggerInfo = &swag.Spec{
 	Version:          "",
 	Host:             "",
-	BasePath:         "/Login/{Username}/{Password}",
+	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "",
 	Description:      "",

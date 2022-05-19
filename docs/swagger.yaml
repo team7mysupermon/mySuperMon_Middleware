@@ -1,4 +1,3 @@
-basePath: /Login/{Username}/{Password}
 info:
   contact: {}
 paths:
@@ -30,7 +29,8 @@ paths:
     get:
       consumes:
       - application/json
-      description: do ping
+      description: This endpoint is to stop a recording and needs a usecase and a
+        applicationIdentifier as parameters.
       parameters:
       - description: :Usecase
         in: path
@@ -46,17 +46,16 @@ paths:
       - application/json
       responses:
         "200":
-          description: OK
-          schema:
-            type: string
-      summary: ping example
+          description: ""
+      summary: Start a recording
       tags:
       - example
   /Stop/:Usecase/:Appiden:
     get:
       consumes:
       - application/json
-      description: do ping
+      description: This endpoint is to stop a recording and needs a usecase and a
+        applicationIdentifier as parameters.
       parameters:
       - description: :Usecase
         in: path
@@ -72,10 +71,8 @@ paths:
       - application/json
       responses:
         "200":
-          description: OK
-          schema:
-            type: string
-      summary: ping example
+          description: ""
+      summary: Stop a recording
       tags:
       - example
 swagger: "2.0"

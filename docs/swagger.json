@@ -3,7 +3,6 @@
     "info": {
         "contact": {}
     },
-    "basePath": "/Login/{Username}/{Password}",
     "paths": {
         "/Login/:Username/:Password": {
             "get": {
@@ -40,7 +39,7 @@
         },
         "/Start/{Usecase}/{Appiden}": {
             "get": {
-                "description": "do ping",
+                "description": "This endpoint is to stop a recording and needs a usecase and a applicationIdentifier as parameters.",
                 "consumes": [
                     "application/json"
                 ],
@@ -50,7 +49,7 @@
                 "tags": [
                     "example"
                 ],
-                "summary": "ping example",
+                "summary": "Start a recording",
                 "parameters": [
                     {
                         "type": "string",
@@ -69,17 +68,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "description": ""
                     }
                 }
             }
         },
         "/Stop/:Usecase/:Appiden": {
             "get": {
-                "description": "do ping",
+                "description": "This endpoint is to stop a recording and needs a usecase and a applicationIdentifier as parameters.",
                 "consumes": [
                     "application/json"
                 ],
@@ -89,7 +85,7 @@
                 "tags": [
                     "example"
                 ],
-                "summary": "ping example",
+                "summary": "Stop a recording",
                 "parameters": [
                     {
                         "type": "string",
@@ -108,10 +104,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "description": ""
                     }
                 }
             }
