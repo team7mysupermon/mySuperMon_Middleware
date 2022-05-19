@@ -37,7 +37,7 @@ var (
 
 func main() {
 	go monitoring.Monitor()
-	docs.SwaggerInfo.BasePath = "/api/v1"
+	docs.SwaggerInfo.BasePath = ""
 	router := gin.Default()
 
 	// The API calls
@@ -52,17 +52,19 @@ func main() {
 	}
 }
 
-// @BasePath /Login/:Username/:Password"
+// @BasePath /Start/{Usecase}/{Appiden}
 
 // PingExample godoc
 // @Summary ping example
 // @Schemes
 // @Description do ping
 // @Tags example
+// @Param Usecase path string true ":Usecase"
+// @Param Appiden path string true ":Appiden"
 // @Accept json
 // @Produce json
 // @Success 200 {string} Helloworld
-// @Router /Login/:Username/:Password [get]
+// @Router /Start/{Usecase}/{Appiden} [get]
 func startRecording(c *gin.Context) {
 	// Creates the command structure by taking information from the URL call
 	// TODO: Handle errors
@@ -78,6 +80,17 @@ func startRecording(c *gin.Context) {
 	go scrapeWithInterval(command)
 }
 
+// @BasePath /Stop/:Usecase/:Appiden"
+
+// PingExample godoc
+// @Summary ping example
+// @Schemes
+// @Description do ping
+// @Tags example
+// @Accept json
+// @Produce json
+// @Success 200 {string} Helloworld
+// @Router /Stop/:Usecase/:Appiden [get]
 func stopRecording(c *gin.Context) {
 	// Creates the command structure by taking information from the URL call
 	// TODO: Handle errors
@@ -93,6 +106,17 @@ func stopRecording(c *gin.Context) {
 	c.JSON(res.StatusCode, gin.H{"Control": "A recording has now ended"})
 }
 
+// @BasePath /Login/:Username/:Password
+
+// PingExample godoc
+// @Summary ping example
+// @Schemes
+// @Description do ping
+// @Tags example
+// @Accept json
+// @Produce json
+// @Success 200 {string} Helloworld
+// @Router /Login/:Username/:Password [get]
 func getAuthToken(c *gin.Context) {
 	var url = "https://app.mysupermon.com/oauth/token"
 	method := "POST"

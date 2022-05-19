@@ -39,7 +39,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/Start1/:Usecase/:Appiden": {
+        "/Start/{Usecase}/{Appiden}": {
             "get": {
                 "description": "do ping",
                 "consumes": [
