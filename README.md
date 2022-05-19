@@ -1,7 +1,5 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/team7mysupermon/mySuperMon_Middleware)](https://goreportcard.com/report/github.com/team7mysupermon/mySuperMon_Middleware)
 
-# Final Readme
-
 # **mySuperMon_Middleware**
 
 This middleware was created for complementing mySuperMon’s monitoring functionalities by integrating Prometheus.
