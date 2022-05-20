@@ -23,7 +23,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "mySuperMond Middleware"
+                    "mySuperMon Middleware"
                 ],
                 "summary": "Send middleware user information",
                 "parameters": [
@@ -63,7 +63,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "example"
+                    "mySuperMon Middleware"
                 ],
                 "summary": "Start a recording",
                 "parameters": [
@@ -105,7 +105,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "example"
+                    "mySuperMon Middleware"
                 ],
                 "summary": "Stop a recording",
                 "parameters": [
