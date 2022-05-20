@@ -2,10 +2,11 @@ swagger: '2.0'
 info:
   description: |
     This is the api endpoints for the
-    MySuperMon Middelware service.
+    mySuperMon Middelware service.
   version: 1.0.0
-  title: Swagger Petstore
+  title: mySuperMon Middleware
   termsOfService: https://mysupermon.com
+host: localhost:8999
 paths:
   /Login/{Username}/{Password}:
     get:
@@ -27,9 +28,9 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: "User information is accepted"
         "400":
-          description: ""
+          description: "User information is not correct"
       summary: Send middleware user information
       tags:
       - example
@@ -54,11 +55,11 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: "Recording has started"
         "400":
-          description: ""
+          description: "Wrong parameters"
         "500":
-          description: ""
+          description: "Connection error to mySuperMon webservice"
       summary: Start a recording
       tags:
       - example
@@ -83,11 +84,13 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: "Recording has stoped"
         "400":
-          description: ""
+          description: "Wrong parameters"
         "500":
-          description: ""
+          description: "Connection error to mySuperMon webservice"
       summary: Stop a recording
       tags:
       - example
+schemes:
+ - http
