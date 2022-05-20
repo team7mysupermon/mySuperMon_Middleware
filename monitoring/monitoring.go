@@ -31,6 +31,13 @@ func Monitor() {
 		return
 	}
 
+	/* http.Handle("/graph", promhttp.Handler())
+	err2 := http.ListenAndServe(":9090", nil)
+	if err2 != nil {
+		return
+	}
+ */
+
 	log.Fatal(http.ListenAndServe(":9090", nil))
 
 }
