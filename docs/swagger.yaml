@@ -84,7 +84,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: "Recording has stoped"
+          description: "Recording has stopped"
         "400":
           description: "Wrong parameters"
         "500":
