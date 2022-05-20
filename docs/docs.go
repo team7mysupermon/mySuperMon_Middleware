@@ -23,7 +23,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "example"
+                    "mySuperMond Middleware"
                 ],
                 "summary": "Send middleware user information",
                 "parameters": [
