@@ -47,8 +47,7 @@ const docTemplate = `{
                         "description": "User information is accepted"
                     },
                     "400": {
-                        "description": 	
-                        User information is not correct""
+                        "description": "User information is not correct"
                     }
                 }
             }
