@@ -44,7 +44,11 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "User information is accepted"
+                    }
+                    "400": {
+                        "description": 	
+                        User information is not correct""
                     }
                 }
             }
@@ -80,7 +84,13 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "Recording has started"
+                    }
+                    "400": {
+                        "description": "Wrong parameters"
+                    }
+                    "500": {
+                        "description": "Connection error to mySuperMon webservice"
                     }
                 }
             }
@@ -116,7 +126,13 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "Recording has stopped"
+                    }
+                    "400": {
+                        "description": "Wrong parameters"
+                    }
+                    "500": {
+                        "description": "Connection error to mySuperMon webservice"
                     }
                 }
             }
