@@ -25,18 +25,14 @@ func Monitor() {
 	runRegisterMetrics()
 	stopRegisterMetrics()
 
+	
+
 	http.Handle("/metrics", promhttp.Handler())
 	err := http.ListenAndServe(":9090", nil)
 	if err != nil {
 		return
 	}
 
-	/* http.Handle("/graph", promhttp.Handler())
-	err2 := http.ListenAndServe(":9090", nil)
-	if err2 != nil {
-		return
-	}
- */
 
 	log.Fatal(http.ListenAndServe(":9090", nil))
 

@@ -16,20 +16,28 @@ services:
       - middleware
 
   prometheus:
-    image: quay.io/prometheus/prometheus:latest
+    image: prom/prometheus:v2.1.0
     container_name: prometheus
     ports:
       - "9090:9090"
     volumes:
-      - $PWD/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
     command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
+      - '--config.file=/etc/prometheus/prometheus.yml'
     networks:
       - middleware
+
+  pushgateway:
+    image: prom/pushgateway
+    ports:
+      - "9091:9091"
+    depends_on:
+      - prometheus
 
 networks:
   middleware:
     name: middleware-network
 
 volumes:
-  prometheus-data: {}
+  prometheus_data: {}

@@ -16,3 +16,7 @@ scrape_configs:
     honor_labels: true
     static_configs:
       - targets: ['localhost:9090']
+
+  - job_name: "mySuperMon_middleware"
+    static_configs:
+      - targets: ['localhost:8999']
