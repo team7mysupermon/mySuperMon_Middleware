@@ -15,8 +15,10 @@ scrape_configs:
   - job_name: "prometheus"
     honor_labels: true
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: 
+        - mymiddelware.localhost:9090
 
   - job_name: "mySuperMon_middleware"
     static_configs:
-      - targets: ['localhost:8999']
+      - targets:
+        - mymiddelware.localhost:9091
