@@ -1,17 +1,12 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
-	"net/http"
-	"strings"
-	"time"
 
 	"github.com/team7mysupermon/mySuperMon_Middleware/storage"
 
 	"github.com/gin-gonic/gin"
 	"github.com/team7mysupermon/mySuperMon_Middleware/monitoring"
+	"github.com/team7mysupermon/mySuperMon_Middleware/recording"
 
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
