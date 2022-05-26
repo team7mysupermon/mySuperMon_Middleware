@@ -8,5 +8,7 @@ RUN go mod download
 RUN go build -o /mysupermon-middleware-prometheus
 
 EXPOSE 8999
+EXPOSE 9090
+EXPOSE 9091
 
-CMD [ "/mysupermon-middleware-prometheus" ]
+CMD ["go", "run", "."]
