@@ -52,3 +52,18 @@ localhost:8999/Start/{Usecase name}/{Application Identifier}
 `Usecase name` **must** be the same as the name used to start the recording.
 
 The `application Identifier` **must** be the same as the application identifier used to start the recording.
+
+## **Using Prometheus Dashboard**
+### **Starting program**
+To start program open directory in terminal to `mySuperMon_Middelware` folder.
+Write following command:
+[first time]:
+```docker-compose up --build```
+[after first time]:
+```docker-compose up```
+
+Before proceding login. To login, see : [Login]
+
+### **Accessing metrics**
+Access prometheus dashboard (in browser) on path: http://mymiddelware.localhost:9090/
+Access mySuperMon custom metrics in txt format on path: http://localhost:9091/metrics
