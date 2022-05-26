@@ -26,7 +26,7 @@ func Monitor() {
 	stopRegisterMetrics()
 
 	go http.Handle("/metrics", promhttp.Handler())
-	
+
 	err := http.ListenAndServe(":9091", nil)
 	if err != nil {
 		log.Fatalln("Failed to serve metrics on port 9091 ")
@@ -35,7 +35,6 @@ func Monitor() {
 	log.Fatal(http.ListenAndServe(":9091", nil))
 
 }
-
 
 func ParseBody(body []byte, action string) {
 

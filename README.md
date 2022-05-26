@@ -10,6 +10,16 @@ Further down this document, you can find a guide on how to install, run and use 
 You must have a MySuperMon account to use this middleware. You can create an account on their [website](https://mysupermon.com/).
 
 ## How to Install
+To install the middleware locally, you must have docker and do the following:
+
+Download the docker compose file from the release.
+
+Open the directory in a terminal where the docker compose file is.
+
+Write the following command:
+```docker-compose up --build```
+
+This will download the docker images locally.
 
 ## How to Run
 To start program open directory in terminal to `mySuperMon_Middelware` folder.
