@@ -1,0 +1,96 @@
+swagger: '2.0'
+info:
+  description: |
+    This is the api endpoints for the
+    mySuperMon Middelware service.
+  version: 1.0.0
+  title: mySuperMon Middleware
+  termsOfService: https://mysupermon.com
+host: localhost:8999
+paths:
+  /Login/{Username}/{Password}:
+    get:
+      description: this is a request to give the middleware user information. this
+        will allow the middleware to set up the authentication token need to start
+        and stop the recording.
+      parameters:
+      - description: :Username
+        in: path
+        name: Username
+        required: true
+        type: string
+      - description: :Password
+        in: path
+        name: Password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: "User information is accepted"
+        "400":
+          description: "User information is not correct"
+      summary: Send middleware user information
+      tags:
+      - example
+  /Start/{Usecase}/{Appiden}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint is to stop a recording and needs a usecase and a
+        applicationIdentifier as parameters.
+      parameters:
+      - description: :Usecase
+        in: path
+        name: Usecase
+        required: true
+        type: string
+      - description: :Appiden
+        in: path
+        name: Appiden
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: "Recording has started"
+        "400":
+          description: "Wrong parameters"
+        "500":
+          description: "Connection error to mySuperMon webservice"
+      summary: Start a recording
+      tags:
+      - example
+  /Stop/{Usecase}/{Appiden}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint is to stop a recording and needs a usecase and a
+        applicationIdentifier as parameters.
+      parameters:
+      - description: :Usecase
+        in: path
+        name: Usecase
+        required: true
+        type: string
+      - description: :Appiden
+        in: path
+        name: Appiden
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: "Recording has stopped"
+        "400":
+          description: "Wrong parameters"
+        "500":
+          description: "Connection error to mySuperMon webservice"
+      summary: Stop a recording
+      tags:
+      - example
+schemes:
+ - http
