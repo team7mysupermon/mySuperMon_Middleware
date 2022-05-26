@@ -9,73 +9,73 @@ import (
 var (
 	STOP_STATEMENTS_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "STATEMENTS",
+			Name: "STOP_STATEMENTS",
 			Help: "",
 		})
 
 	STOP_STATEMENT_LATENCY_IN_S_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "STATEMENT_LATENCY_IN_S",
+			Name: "STOP_STATEMENT_LATENCY_IN_S",
 			Help: "",
 		})
 
 	STOP_FILE_IO_LATENCY_IN_S_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "FILE_IO_LATENCY_IN_S",
+			Name: "STOP_FILE_IO_LATENCY_IN_S",
 			Help: "",
 		})
 
 	STOP_CURRENT_CONNECTIONS_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "CURRENT_CONNECTIONS",
+			Name: "STOP_CURRENT_CONNECTIONS",
 			Help: "",
 		})
 
 	STOP_DATABASE_SIZE_IN_MB_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "DATABASE_SIZE_IN_MB",
+			Name: "STOP_DATABASE_SIZE_IN_MB",
 			Help: "",
 		})
 
 	STOP_STATEMENT_AVG_LATENCY_IN_MS_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "STATEMENT_AVG_LATENCY_IN_MS",
+			Name: "STOP_STATEMENT_AVG_LATENCY_IN_MS",
 			Help: "",
 		})
 	
 	STOP_APPLICATION_ID_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "APPLICATION_ID",
+			Name: "STOP_APPLICATION_ID",
 			Help: "",
 		})
 
 	STOP_FILE_IOS_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "FILE_IOS",
+			Name: "STOP_FILE_IOS",
 			Help: "",
 		})
 	
 	STOP_TABLE_SCANS_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "TABLE_SCANS",
+			Name: "STOP_TABLE_SCANS",
 			Help: "",
 		})
 
 	STOP_DATA_SOURCE_ID_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "DATA_SOURCE_ID",
+			Name: "STOP_DATA_SOURCE_ID",
 			Help: "",
 		})
 
 	STOP_USECASE_IDENTIFIER_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "USECASE_IDENTIFIER",
+			Name: "STOP_USECASE_IDENTIFIER",
 			Help: "",
 		})
 	
 	STOP_UNIQUE_USERS_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "UNIQUE_USERS",
+			Name: "STOP_UNIQUE_USERS",
 			Help: "",
 		})
 )
