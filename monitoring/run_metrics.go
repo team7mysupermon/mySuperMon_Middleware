@@ -11,127 +11,127 @@ var (
 	//RUN METRICS :
 	RUN_SUM_ROWS_AFFECTED_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_ROWS_AFFECTED",
+			Name: "RUN_SUM_ROWS_AFFECTED",
 			Help: "Value of the no. of times a row is affected during monitoring",
 		})
 
 	RUN_SUM_SELECTED_RANGE_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_SELECTED_RANGE",
+			Name: "RUN_SUM_SELECTED_RANGE",
 			Help: "",
 		})
 
 	RUN_SUM_LOCK_TIME_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_LOCK_TIME",
+			Name: "RUN_SUM_LOCK_TIME",
 			Help: "",
 		})
 
 	RUN_SUM_SORT_ROWS_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_SORT_ROWS",
+			Name: "RUN_SUM_SORT_ROWS",
 			Help: "",
 		})
 
 	RUN_SUM_ERRORS_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_ERRORS",
+			Name: "RUN_SUM_ERRORS",
 			Help: "",
 		})
 
 	RUN_SUM_ROWS_SENT_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_ROWS_SENT",
+			Name: "RUN_SUM_ROWS_SENT",
 			Help: "",
 		})
 
 	RUN_SUM_SELECT_SCAN_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_SELECT_SCAN",
+			Name: "RUN_SUM_SELECT_SCAN",
 			Help: "",
 		})
 
 	RUN_SUM_NO_GOOD_INDEX_USED_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_NO_GOOD_INDEX_USED",
+			Name: "RUN_SUM_NO_GOOD_INDEX_USED",
 			Help: "",
 		})
 
 	RUN_EXEC_TIME_MAX_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "EXEC_TIME_MAX",
+			Name: "RUN_EXEC_TIME_MAX",
 			Help: "",
 		})
 
 	RUN_SUM_SORT_SCAN_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_SUM_SORT_SCAN",
+			Name: "RUN_SUM_SUM_SORT_SCAN",
 			Help: "",
 		})
 
 	RUN_SUM_SELECT_RANGE_CHECK_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_SELECT_RANGE_CHECK",
+			Name: "RUN_SUM_SELECT_RANGE_CHECK",
 			Help: "",
 		})
 
 	RUN_SUM_TIMER_WAIT_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_TIMER_WAIT",
+			Name: "RUN_SUM_TIMER_WAIT",
 			Help: "",
 		})
 
 	RUN_USECASE_IDENTIFIER_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "USECASE_IDENTIFYER",
+			Name: "RUN_USECASE_IDENTIFYER",
 			Help: "",
 		})
 
 	RUN_START_TIMESTAMP_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "START_TIMESTAMP",
+			Name: "RUN_START_TIMESTAMP",
 			Help: "",
 		})
 
 	RUN_SUM_ROWS_EXAMINED_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_ROWS_EXAMINED",
+			Name: "RUN_SUM_ROWS_EXAMINED",
 			Help: "",
 		})
 
 	RUN_SUM_SELECT_FULL_JOIN_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_SELECT_FULL_JOIN",
+			Name: "RUN_SUM_SELECT_FULL_JOIN",
 			Help: "",
 		})
 
 	RUN_SUM_NO_INDEX_USED_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_NO_INDEX_USED",
+			Name: "RUN_SUM_NO_INDEX_USED",
 			Help: "",
 		})
 
 	RUN_COUNT_STAR_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "COUNT_STAR",
+			Name: "RUN_COUNT_STAR",
 			Help: "",
 		})
 
 	RUN_SUM_SELECT_FULL_RANGE_JOIN_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_SELECT_FULL_RANGE_JOIN",
+			Name: "RUN_SUM_SELECT_FULL_RANGE_JOIN",
 			Help: "",
 		})
 
 	RUN_SUM_SORT_MERGE_PASSES_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_SORT_MERGE_PASSES",
+			Name: "RUN_SUM_SORT_MERGE_PASSES",
 			Help: "",
 		})
 
 	RUN_SUM_SORT_RANGE_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Name: "SUM_SORT_RANGE",
+			Name: "RUN_SUM_SORT_RANGE",
 			Help: "",
 		})
 )
