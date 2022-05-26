@@ -63,7 +63,38 @@ localhost:8999/Start/{Usecase name}/{Application Identifier}
 **Application Identifier** has to be the same as the application identifier used to start the recording.
 The `application Identifier` **must** be the same as the application identifier used to start the recording.
 
+## **Prometheus**
+
 ### **Accessing metrics**
+*Please remember to login before hand. See subsection ...*
 Access prometheus dashboard (in browser) on path: http://mymiddelware.localhost:9090/
 Access mySuperMon custom metrics in txt format on path: http://localhost:9091/metrics
 
+## **Grafana**
+Access Grafana on path: http://localhost:3000/
+
+*OBS! Beware that first time users of Grafana needs to login with credentials: {uname}: admin, {password}: admin*
+
+### **Steps to connect Prometheus to Grafana**
+- Press *Add datasource*
+- Select *Prometheus* as the type
+- Fill out the form, with the following info:
+    **HTTP**
+    - Name: whatever you wanna call it
+    - URL:
+    - Access:
+    some fields that doesn't matter...
+    **Auth**
+    - Basic auth: on
+    the rest should be left off...
+    **Basic Auth Details**
+    - User: *Username for mySuperMon*
+    - Password: *Password for mySuperMon*
+    **Alerting**
+    - Scrape interval: 5s
+    
+    all the remaining fields should be left untouched
+
+- Press: *Save & test*, and pray to god it works. If green yes, if red no.
+- Access metrics in explore
+- See Grafana tutorials for more
