@@ -12,6 +12,7 @@ services:
     restart: always
     ports:
       - 8999:8999
+      - 9091:9091
     networks:
       - middleware
 
@@ -19,7 +20,7 @@ services:
     image: prom/prometheus:v2.1.0
     container_name: prometheus
     ports:
-      - "9091:9091"
+      - "9090:9090"
     volumes:
       - ./prometheus/:/etc/prometheus/
       - prometheus_data:/prometheus
@@ -30,7 +31,7 @@ services:
 
 networks:
   middleware:
-    name: middleware-network
+    name: middleware
 
 volumes:
   prometheus_data: {}
