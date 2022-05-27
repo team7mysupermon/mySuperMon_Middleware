@@ -45,7 +45,7 @@ Also, the image will open the port **9090** that can be used to access informati
 
 Once the middleware is up and running, you can do the following API calls:
 
-### Login
+### Login {#login}
 
 ```
 localhost:8999/Login/{MySuperMon Username}/{MySuperMon Password}
@@ -83,7 +83,7 @@ The `application Identifier` **must** be the same as the application identifier
 
 ### **Accessing metrics**
 
-*Please remember to login before hand. See subsection ...*
+*Please remember to login before hand. See subsection ... [Login](#login)*
 Access prometheus dashboard (in browser) on path: http://mymiddelware.localhost:9090/
 Access mySuperMon custom metrics in txt format on path: http://localhost:9091/metrics
 
