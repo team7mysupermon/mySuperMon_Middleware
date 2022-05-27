@@ -190,11 +190,6 @@ func runRecordMetrics() {
 			RUN_SUM_SORT_MERGE_PASSES_GAUGE.Set(float64(runData.SumSortMergePasses))
 			RUN_SUM_SORT_RANGE_GAUGE.Set(float64(runData.SumSortRange))
 
-			//THE FOLLOWING IS USED FOR TESTING THAT THE METRICS OBSERVES CHANGES
-			/* a = a+1
-			b = b+2
-			RUN_SUM_ROWS_AFFECTED_GAUGE.Set(float64(a))
-			RUN_SUM_SELECTED_RANGE_GAUGE.Set(float64(b)) */
 			time.Sleep(5 * time.Second)
 		}
 	}()
