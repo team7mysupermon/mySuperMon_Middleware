@@ -35,7 +35,9 @@ Before proceding login. To login, see : [Login](#login)
 
 When the docker image is running, it is running on the local port **8999**, which is the port you can use to start and stop a MySuperMon recording.
 
-Also, the image will open the port **9090** that can be used to access information about the recording through **Prometheus.**
+We expose 2 ports for Prometheus. The first is **9090** which is where the "targets" and "graph" for **Prometheus** are located. Also, the image will open the port **9091** that can be used to access information about the recording through **Prometheus.**
+
+The image will export Grafana on port **3000**.
 
 Once the middleware is up and running, you can do the following API calls, API calls can be made through the address-bar in the browser:
 
