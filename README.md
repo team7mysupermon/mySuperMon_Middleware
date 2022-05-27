@@ -21,21 +21,15 @@ Open the directory in a terminal where the docker compose file is.
 Write the following command:
 ```docker-compose pull```
 
-Then run the following command:
-```docker-compose up --build```
-
 This will download the docker images locally.
 
 ## How to Run
 
-To start program open directory in terminal to `mySuperMon_Middelware` folder.
+To start program open a terminal and navigate to the folder containing the docker compose file.
 Write following command:
-[first time]:
-```docker-compose up --build```
-[after first time]:
 ```docker-compose up```
 
-Before proceding login. To login, see : [Login]
+Before proceding login. To login, see : [Login](#login)
 
 ## How to Use
 
@@ -43,7 +37,7 @@ When the docker image is running, it is running on the local port **8999**, whic
 
 Also, the image will open the port **9090** that can be used to access information about the recording through **Prometheus.**
 
-Once the middleware is up and running, you can do the following API calls:
+Once the middleware is up and running, you can do the following API calls, API calls can be made through the address-bar in the browser:
 
 ### Login
 
@@ -77,13 +71,12 @@ localhost:8999/Start/{Usecase name}/{Application Identifier}
 
 
 **Application Identifier** has to be the same as the application identifier used to start the recording.
-The `application Identifier` **must** be the same as the application identifier used to start the recording.
 
 ## **Prometheus**
 
 ### **Accessing metrics**
 
-*Please remember to login before hand. See subsection ...*
+*Please remember to login before hand. See subsection [Login](#login)*
 Access prometheus dashboard (in browser) on path: http://mymiddelware.localhost:9090/
 Access mySuperMon custom metrics in txt format on path: http://localhost:9091/metrics
 
@@ -98,22 +91,36 @@ Access Grafana on path: http://localhost:3000/
 - Press *Add datasource*
 - Select *Prometheus* as the type
 - Fill out the form, with the following info:
+
     **HTTP**
     - Name: whatever you wanna call it
-    - URL:
-    - Access:
-    some fields that doesn't matter...
+    - URL: http://localhost:9090/
+    - Access: Server (Default)
+    
+    The remaining fields should not be altered
+    
     **Auth**
     - Basic auth: on
-    the rest should be left off...
+    
+    The remaining fields should be left off
+    
     **Basic Auth Details**
     - User: *Username for mySuperMon*
     - Password: *Password for mySuperMon*
+    
     **Alerting**
     - Scrape interval: 5s
     
-    all the remaining fields should be left untouched
+    All the remaining fields should be left untouched
 
 - Press: *Save & test*, and pray to god it works. If green yes, if red no.
 - Access metrics in explore
 - See Grafana tutorials for more
+
+## Swagger
+
+Once the middleware is up and running, swagger documentation will be up on the following page: [http://localhost:8999/swagger/index.html#/](http://localhost:8999/swagger/index.html#/)
+
+### How to use
+
+When the swagger page is opened the API endpoints can be tested by opening a tab and pressing the “try it out” button. Fill out the required information and press execute.
