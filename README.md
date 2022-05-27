@@ -83,7 +83,7 @@ The `application Identifier` **must** be the same as the application identifier
 
 ### **Accessing metrics**
 
-*Please remember to login before hand. See subsection ... [Login](#login)*
+*Please remember to login before hand. See subsection [Login](#login)*
 Access prometheus dashboard (in browser) on path: http://mymiddelware.localhost:9090/
 Access mySuperMon custom metrics in txt format on path: http://localhost:9091/metrics
 
