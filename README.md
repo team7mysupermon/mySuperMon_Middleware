@@ -21,21 +21,15 @@ Open the directory in a terminal where the docker compose file is.
 Write the following command:
 ```docker-compose pull```
 
-Then run the following command:
-```docker-compose up --build```
-
 This will download the docker images locally.
 
 ## How to Run
 
-To start program open directory in terminal to `mySuperMon_Middelware` folder.
+To start program open a terminal and navigate to the folder containing the docker compose file.
 Write following command:
-[first time]:
-```docker-compose up --build```
-[after first time]:
 ```docker-compose up```
 
-Before proceding login. To login, see : [Login]
+Before proceding login. To login, see : [Login](#login)
 
 ## How to Use
 
@@ -43,7 +37,7 @@ When the docker image is running, it is running on the local port **8999**, whic
 
 Also, the image will open the port **9090** that can be used to access information about the recording through **Prometheus.**
 
-Once the middleware is up and running, you can do the following API calls:
+Once the middleware is up and running, you can do the following API calls, API calls can be made through the address-bar in the browser:
 
 ### Login
 
@@ -77,7 +71,6 @@ localhost:8999/Start/{Usecase name}/{Application Identifier}
 
 
 **Application Identifier** has to be the same as the application identifier used to start the recording.
-The `application Identifier` **must** be the same as the application identifier used to start the recording.
 
 ## **Prometheus**
 
@@ -112,7 +105,7 @@ Access Grafana on path: http://localhost:3000/
     **Alerting**
     - Scrape interval: 5s
     
-    all the remaining fields should be left untouched
+    All the remaining fields should be left untouched
 
 - Press: *Save & test*, and pray to god it works. If green yes, if red no.
 - Access metrics in explore
