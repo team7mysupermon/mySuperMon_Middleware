@@ -67,7 +67,6 @@ func main() {
 // @Router /Start/{Usecase}/{Appiden} [get]
 func startRecording(c *gin.Context) {
 	// Creates the command structure by taking information from the URL call
-	// TODO: Handle errors
 	var command storage.StartAndStopCommand
 	if err := c.ShouldBindUri(&command); err != nil {
 		c.JSON(400, gin.H{"msg": err})
@@ -95,7 +94,6 @@ func startRecording(c *gin.Context) {
 // @Router /Stop/{Usecase}/{Appiden} [get]
 func stopRecording(c *gin.Context) {
 	// Creates the command structure by taking information from the URL call
-	// TODO: Handle errors
 	var command storage.StartAndStopCommand
 	if err := c.ShouldBindUri(&command); err != nil {
 		c.JSON(400, gin.H{"msg": err})
@@ -125,7 +123,6 @@ func getAuthToken(c *gin.Context) {
 	method := "POST"
 
 	// Creates the command structure by taking information from the URL call
-	// TODO: Handle errors
 	var command storage.LoginCommand
 	if err := c.ShouldBindUri(&command); err != nil {
 		c.JSON(400, gin.H{"msg": err})
@@ -138,7 +135,6 @@ func getAuthToken(c *gin.Context) {
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
 
-	// TODO: Handle all errors
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -146,7 +142,6 @@ func getAuthToken(c *gin.Context) {
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Add("Authorization", authToken)
 
-	// TODO: Handle all errors
 	res, err := client.Do(req)
 	if err != nil {
 		fmt.Println(err)
@@ -154,7 +149,6 @@ func getAuthToken(c *gin.Context) {
 	}
 	defer res.Body.Close()
 
-	// TODO: Handle all errors
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		fmt.Println(err)
@@ -178,7 +172,6 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
 
-	// TODO: Handle errors
 	if err != nil {
 		fmt.Println(err)
 		return &http.Response{
@@ -199,7 +192,6 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 	}
 	defer res.Body.Close()
 
-	// TODO: Handle errors
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		fmt.Println(err)
@@ -211,9 +203,6 @@ func Operation(usecase string, action string, applicationIdentifier string) *htt
 
 	monitoring.ParseBody(body, action)
 
-	fmt.Printf("********************************************************** begin %v \n", action)
-	fmt.Println(string(body))
-	fmt.Printf("********************************************************** end %v \n\n", action)
 	return res
 
 }

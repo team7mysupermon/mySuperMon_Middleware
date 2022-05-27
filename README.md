@@ -1,6 +1,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/team7mysupermon/mySuperMon_Middleware)](https://goreportcard.com/report/github.com/team7mysupermon/mySuperMon_Middleware)
 
 # mySuperMon_Middleware
+
 This middleware was created to have an easy to set up link between MySuperMon and Prometheus.
 
 This middleware helps you, the user, moniter your database. Through MySuperMon and Prometheus all the relevant information about different tasks performed on your database will be monitored and saved, and this information is easily accessable through the Prometheus and MySuperMon dashboard.
@@ -10,6 +11,7 @@ Further down this document, you can find a guide on how to install, run and use 
 You must have a MySuperMon account to use this middleware. You can create an account on their [website](https://mysupermon.com/).
 
 ## How to Install
+
 To install the middleware locally, you must have docker and docker compose installed and do the following:
 
 Download the docker compose file from the release.
@@ -25,6 +27,7 @@ Then run the following command:
 This will download the docker images locally.
 
 ## How to Run
+
 To start program open directory in terminal to `mySuperMon_Middelware` folder.
 Write following command:
 [first time]:
@@ -79,16 +82,19 @@ The `application Identifier` **must** be the same as the application identifier
 ## **Prometheus**
 
 ### **Accessing metrics**
+
 *Please remember to login before hand. See subsection ...*
 Access prometheus dashboard (in browser) on path: http://mymiddelware.localhost:9090/
 Access mySuperMon custom metrics in txt format on path: http://localhost:9091/metrics
 
 ## **Grafana**
+
 Access Grafana on path: http://localhost:3000/
 
 *OBS! Beware that first time users of Grafana needs to login with credentials: {uname}: admin, {password}: admin*
 
 ### **Steps to connect Prometheus to Grafana**
+
 - Press *Add datasource*
 - Select *Prometheus* as the type
 - Fill out the form, with the following info:
