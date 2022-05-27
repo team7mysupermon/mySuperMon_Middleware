@@ -94,13 +94,15 @@ Access Grafana on path: http://localhost:3000/
 
     **HTTP**
     - Name: whatever you wanna call it
-    - URL:
-    - Access:
-    some fields that doesn't matter...
+    - URL: http://localhost:9090/
+    - Access: Server (Default)
+    
+    The remaining fields should not be altered
     
     **Auth**
     - Basic auth: on
-    the rest should be left off...
+    
+    The remaining fields should be left off
     
     **Basic Auth Details**
     - User: *Username for mySuperMon*
