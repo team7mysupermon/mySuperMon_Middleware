@@ -91,17 +91,21 @@ Access Grafana on path: http://localhost:3000/
 - Press *Add datasource*
 - Select *Prometheus* as the type
 - Fill out the form, with the following info:
+
     **HTTP**
     - Name: whatever you wanna call it
     - URL:
     - Access:
     some fields that doesn't matter...
+    
     **Auth**
     - Basic auth: on
     the rest should be left off...
+    
     **Basic Auth Details**
     - User: *Username for mySuperMon*
     - Password: *Password for mySuperMon*
+    
     **Alerting**
     - Scrape interval: 5s
     
@@ -110,3 +114,11 @@ Access Grafana on path: http://localhost:3000/
 - Press: *Save & test*, and pray to god it works. If green yes, if red no.
 - Access metrics in explore
 - See Grafana tutorials for more
+
+## Swagger
+
+Once the middleware is up and running, swagger documentation will be up on the following page: [http://localhost:8999/swagger/index.html#/](http://localhost:8999/swagger/index.html#/)
+
+### How to use
+
+When the swagger page is opened the API endpoints can be tested by opening a tab and pressing the “try it out” button. Fill out the required information and press execute.
