@@ -45,7 +45,7 @@ Also, the image will open the port **9090** that can be used to access informati
 
 Once the middleware is up and running, you can do the following API calls:
 
-### Login {#login}
+### Login
 
 ```
 localhost:8999/Login/{MySuperMon Username}/{MySuperMon Password}
