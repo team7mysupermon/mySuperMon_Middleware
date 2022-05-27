@@ -1,8 +1,9 @@
 package monitoring
 
 import (
-	"github.com/prometheus/client_golang/prometheus"
 	"time"
+
+	"github.com/prometheus/client_golang/prometheus"
 )
 
 var (
@@ -54,7 +55,7 @@ var (
 			Help: "",
 		})
 
-	START_TABLE_SCANS_GAUGE = prometheus.NewGauge( 
+	START_TABLE_SCANS_GAUGE = prometheus.NewGauge(
 		prometheus.GaugeOpts{
 			Name: "START_TABLE_SCANS_GAUGE",
 			Help: "",
@@ -116,4 +117,3 @@ func startRecordMetrics() {
 		}
 	}()
 }
-

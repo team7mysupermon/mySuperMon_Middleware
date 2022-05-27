@@ -31,4 +31,3 @@ type LoginCommand struct {
 	Username string `uri:"Username" binding:"required"`
 	Password string `uri:"Password" binding:"required"`
 }
-
