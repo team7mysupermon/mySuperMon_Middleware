@@ -90,13 +90,13 @@ Access Grafana on path: http://localhost:3000/
 
 ### **Steps to connect Prometheus to Grafana**
 
-- Press *Add datasource*
-- Select *Prometheus* as the type
+- Press *Add datasource*.
+- Select *Prometheus* as the type.
 - Fill out the form, with the following info:
 
     **HTTP**
     - Name: whatever you wanna call it
-    - URL: http://localhost:9090/
+    - URL: http://prometheus:9090/
     - Access: Server (Default)
     
     The remaining fields should not be altered
@@ -113,11 +113,11 @@ Access Grafana on path: http://localhost:3000/
     **Alerting**
     - Scrape interval: 5s
     
-    All the remaining fields should be left untouched
+    All the remaining fields should be left untouched.
 
-- Press: *Save & test*, and pray to god it works. If green yes, if red no.
-- Access metrics in explore
-- See Grafana tutorials for more
+- Press: *Save & test*.
+- Access metrics in explore.
+- See Grafana tutorials for more.
 
 ## Swagger
 
